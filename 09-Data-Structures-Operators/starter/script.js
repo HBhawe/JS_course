@@ -466,27 +466,29 @@ const game = {
 // ONLY UNIQUE VALUES
 // console.log(new Set("Harshal"));
 
-const orderSet = new Set(["pasta", "pizza", "pizza", "risotto", "pasta"]);
-console.log(orderSet);
-console.log(orderSet.size);
-console.log(orderSet.has("pizza"));
-console.log(orderSet.has("bread"));
-orderSet.add("garlic bread");
-orderSet.add("garlic bread");
-orderSet.delete("risotto");
-console.log(orderSet);
+// const orderSet = new Set(["pasta", "pizza", "pizza", "risotto", "pasta"]);
+// console.log(orderSet);
+// console.log(orderSet.size);
+// console.log(orderSet.has("pizza"));
+// console.log(orderSet.has("bread"));
+// orderSet.add("garlic bread");
+// orderSet.add("garlic bread");
+// orderSet.delete("risotto");
+// console.log(orderSet);
 // orderSet.clear();
 // console.log(orderSet);
 
-for (const order of orderSet) {
-  console.log(order);
-}
+// for (const order of orderSet) {
+//   console.log(order);
+// }
 
 // real world example of a set
-const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
-const staffUnique = [...new Set(staff)];
-console.log(staffUnique);
+// const staff = ["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"];
+// const staffUnique = [...new Set(staff)];
+// console.log(staffUnique);
 
-console.log(
-  new Set(["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"]).size
-);
+// console.log(
+//   new Set(["Waiter", "Chef", "Waiter", "Manager", "Chef", "Waiter"]).size
+// );
+
+// MAPS
