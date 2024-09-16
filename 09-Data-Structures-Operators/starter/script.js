@@ -595,3 +595,51 @@ const gameEvents = new Map([
 //   const half = minute <= 45 ? "FIRST" : "SECOND";
 //   console.log(`[${half} HALF] ${minute}: ${event}`);
 // }
+
+// STRING OPERATIONS
+const airline = "TAP Air Portugal";
+const plane = "A320";
+
+console.log(plane[0]);
+console.log(plane[3]);
+console.log("B737"[0]);
+console.log(airline.length);
+console.log("abcdefg".length);
+
+// first index
+console.log(airline.indexOf("r"));
+
+// last index
+console.log(airline.lastIndexOf("r"));
+
+// where the string starts
+console.log(airline.indexOf("Portugal"));
+
+// position at which the extraction will start
+// substring = new string
+console.log(airline.slice(4));
+
+// start and end
+console.log(airline.slice(4, 7));
+
+console.log(airline.slice(0, airline.indexOf(" ")));
+
+// the space is included here:
+console.log(airline.slice(airline.lastIndexOf(" ") + 1));
+
+console.log(airline.slice(-2));
+
+// cuts the first and last character
+console.log(airline.slice(1, -1));
+
+const checkMiddleSeat = function (seat) {
+  // B AND E are middle seats
+  let lastChar = seat.slice(-1);
+  if (lastChar === "B" || lastChar === "E") {
+    console.log(`Middle seat`);
+  } else console.log(`Window or aisle`);
+};
+
+checkMiddleSeat("11B");
+checkMiddleSeat("23C");
+checkMiddleSeat("3E");
