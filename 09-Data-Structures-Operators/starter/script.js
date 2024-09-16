@@ -525,30 +525,30 @@ const game = {
 // rest.set(document.querySelector("h1"), "heading");
 // console.log(rest);
 
-const question = new Map([
-  ["question", "What is the best programming language in the world?"],
-  [1, "C"],
-  [2, "Java"],
-  [3, "JavaScript"],
-  ["correct", 3],
-  [true, "Correct"],
-  [false, "Wrong"],
-]);
+// const question = new Map([
+//   ["question", "What is the best programming language in the world?"],
+//   [1, "C"],
+//   [2, "Java"],
+//   [3, "JavaScript"],
+//   ["correct", 3],
+//   [true, "Correct"],
+//   [false, "Wrong"],
+// ]);
 
-console.log(question);
+// console.log(question);
 
 // convert object to map
-console.log(Object.entries(openingHours));
-const hoursMap = new Map(Object.entries(openingHours));
-console.log(hoursMap);
+// console.log(Object.entries(openingHours));
+// const hoursMap = new Map(Object.entries(openingHours));
+// console.log(hoursMap);
 
 // ARRAYS
-console.log(question.get("question"));
-for (const [key, value] of question) {
-  if (typeof key === "number") {
-    console.log(`Answer ${key}: ${value}`);
-  }
-}
+// console.log(question.get("question"));
+// for (const [key, value] of question) {
+//   if (typeof key === "number") {
+//     console.log(`Answer ${key}: ${value}`);
+//   }
+// }
 
 // const answer = Number(prompt("Your answer"));
 // console.log(answer);
@@ -556,6 +556,6 @@ for (const [key, value] of question) {
 // console.log(question.get(answer === question.get("correct")));
 
 // MAP BACK TO AN ARRAY
-console.log([...question]);
-console.log([...question.entries()]);
-console.log([...question.values()]);
+// console.log([...question]);
+// console.log([...question.entries()]);
+// console.log([...question.values()]);
