@@ -433,18 +433,18 @@ const game = {
 // CODING CHALLENGE #2
 
 // 1.
-for (const [index, scorer] of game.scored.entries()) {
-  console.log(`Goal ${index + 1}: ${scorer}`);
-}
+// for (const [index, scorer] of game.scored.entries()) {
+//   console.log(`Goal ${index + 1}: ${scorer}`);
+// }
 
 // 2.
-const odds = Object.values(game.odds);
-let average = 0;
-for (const element of odds) {
-  average += element;
-}
-average /= odds.length;
-console.log(average);
+// const odds = Object.values(game.odds);
+// let average = 0;
+// for (const element of odds) {
+//   average += element;
+// }
+// average /= odds.length;
+// console.log(average);
 
 // 3.
 
@@ -457,7 +457,7 @@ console.log(average);
 // console.log(`Odds of draw: ${draw}`);
 // console.log(`Odds of victory ${teamB}: ${team2}`);
 
-for (const [team, odd] of Object.entries(game.odds)) {
-  const teamString = team === "x" ? "draw" : `victory ${game[team]}`;
-  console.log(`Odds of ${teamString} ${odd}`);
-}
+// for (const [team, odd] of Object.entries(game.odds)) {
+//   const teamString = team === "x" ? "draw" : `victory ${game[team]}`;
+//   console.log(`Odds of ${teamString} ${odd}`);
+// }
