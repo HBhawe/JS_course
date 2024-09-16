@@ -298,46 +298,46 @@ const restaurant = {
 
 // console.log(rest1, rest2);
 
-// const game = {
-//   team1: "Bayern Munich",
-//   team2: "Borrussia Dortmund",
-//   players: [
-//     [
-//       "Neuer",
-//       "Pavard",
-//       "Martinez",
-//       "Alaba",
-//       "Davies",
-//       "Kimmich",
-//       "Goretzka",
-//       "Coman",
-//       "Muller",
-//       "Gnarby",
-//       "Lewandowski",
-//     ],
-//     [
-//       "Burki",
-//       "Schulz",
-//       "Hummels",
-//       "Akanji",
-//       "Hakimi",
-//       "Weigl",
-//       "Witsel",
-//       "Hazard",
-//       "Brandt",
-//       "Sancho",
-//       "Gotze",
-//     ],
-//   ],
-//   score: "4:0",
-//   scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
-//   date: "Nov 9th, 2037",
-//   odds: {
-//     team1: 1.33,
-//     x: 3.25,
-//     team2: 6.5,
-//   },
-// };
+const game = {
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
+  players: [
+    [
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
+    ],
+    [
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
+    ],
+  ],
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
+  odds: {
+    team1: 1.33,
+    x: 3.25,
+    team2: 6.5,
+  },
+};
 
 // const players1 = [...game.players[0]];
 // const players2 = [...game.players[1]];
@@ -418,14 +418,46 @@ const restaurant = {
 // console.log(users[0]?.name ?? `user array empty`);
 // console.log(users[1]?.name ?? `user array empty`);
 
-for (const day of Object.keys(openingHours)) {
-  console.log(day);
+// for (const day of Object.keys(openingHours)) {
+//   console.log(day);
+// }
+
+// // entire object
+// const entries = Object.entries(openingHours);
+// console.log(entries);
+
+// for (const [key, { open, close }] of entries) {
+//   console.log(`On ${key} we open at ${open} and close at ${close}`);
+// }
+
+// CODING CHALLENGE #2
+
+// 1.
+for (const [index, scorer] of game.scored.entries()) {
+  console.log(`Goal ${index + 1}: ${scorer}`);
 }
 
-// entire object
-const entries = Object.entries(openingHours);
-console.log(entries);
+// 2.
+const odds = Object.values(game.odds);
+let average = 0;
+for (const element of odds) {
+  average += element;
+}
+average /= odds.length;
+console.log(average);
 
-for (const [key, { open, close }] of entries) {
-  console.log(`On ${key} we open at ${open} and close at ${close}`);
+// 3.
+
+// const teamA = game.team1;
+// const teamB = game.team2;
+
+// const [team1, draw, team2] = odds;
+
+// console.log(`Odds of victory ${teamA}: ${team1}`);
+// console.log(`Odds of draw: ${draw}`);
+// console.log(`Odds of victory ${teamB}: ${team2}`);
+
+for (const [team, odd] of Object.entries(game.odds)) {
+  const teamString = team === "x" ? "draw" : `victory ${game[team]}`;
+  console.log(`Odds of ${teamString} ${odd}`);
 }
