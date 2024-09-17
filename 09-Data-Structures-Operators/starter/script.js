@@ -643,3 +643,62 @@ const checkMiddleSeat = function (seat) {
 checkMiddleSeat("11B");
 checkMiddleSeat("23C");
 checkMiddleSeat("3E");
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+// Fix capitalisation in names
+const passenger = "hArShAl";
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+console.log(passengerCorrect);
+
+// check email
+const email = "hello@harshal.io";
+const loginEmail = " Hello@HArshal.io \n";
+
+// const lowerEmail = loginEmail.toLowerCase();
+// const trimmedEmail = lowerEmail.trim();
+// console.log(trimmedEmail);
+
+const normalisedEmail = loginEmail.toLowerCase().trim();
+console.log(normalisedEmail);
+console.log(email === normalisedEmail);
+
+// replace parts of string
+const priceIN = "₹288,97";
+const priceUS = priceIN.replace("₹", "$").replace(",", ".");
+console.log(priceIN, priceUS);
+
+const announcement =
+  "All passengers come to boarding door 23. Boarding door 23";
+
+// replace all method
+console.log(announcement.replaceAll("door", "gate"));
+
+// REGEXP TO REPLACE. g is global
+console.log(announcement.replace(/door/g, "gate"));
+
+// BOOLEANS
+const planeNeo = "Airbus A320neo";
+console.log(planeNeo.includes("A320"));
+console.log(planeNeo.includes("Boeing"));
+console.log(planeNeo.startsWith("Air"));
+
+if (planeNeo.startsWith("Airbus") && planeNeo.endsWith("neo")) {
+  console.log("Part of the new Airbus family");
+}
+
+// Practice exercise
+// always convert user input to lower case
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes("knife") || baggage.includes("gun")) {
+    console.log(`You are not allowed onboard`);
+  } else console.log(`Welcome aboard`);
+};
+
+checkBaggage("I have a laptop, some Food and a pocket Knife");
+checkBaggage("Socks and camera");
+checkBaggage("Got some snacks and a gun for protection");
