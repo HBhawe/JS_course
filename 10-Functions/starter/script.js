@@ -73,3 +73,34 @@
 // function that receives a fn as an argument
 // functions that returns a new function
 // OR BOTH
+
+// FUNCTIONS WITH CALLBACK FUNCTIONS
+const oneWord = function (str) {
+  return str.replace(/ /g, "").toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(" ");
+  return [first.toUpperCase(), ...others].join(" ");
+};
+
+// HIGHER ORDER FUNCTION - ABSTRACTION
+const transformer = function (str, fn) {
+  console.log(`original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+
+  console.log(`Transformed by ${fn.name}`);
+};
+
+transformer("JavaScript is weird", upperFirstWord);
+transformer("JavaScript is weird", oneWord);
+
+// CALL BACK FUNCTION EXAMPLE
+// add event listeners 2nd arg. is a call back function
+const high5 = function () {
+  console.log(`🖐️`);
+};
+
+document.body.addEventListener("click", high5);
+
+// ["Harshal", "Joel", "Teresa"].forEach(high5);
