@@ -62,3 +62,14 @@
 // there is NO pass by reference in JS
 
 // FIRST CLASS AND HIGHER ORDER FUNCTIONS
+
+// FIRST CLASS
+// assign to variables
+// functions as arguments to other functions
+// return functions from other functions
+// call methods on functions
+
+// HIGHER ORDER FUNCTIONS
+// function that receives a fn as an argument
+// functions that returns a new function
+// OR BOTH
