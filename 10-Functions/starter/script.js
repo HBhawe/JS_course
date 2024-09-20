@@ -85,22 +85,42 @@ const upperFirstWord = function (str) {
 };
 
 // HIGHER ORDER FUNCTION - ABSTRACTION
-const transformer = function (str, fn) {
-  console.log(`original string: ${str}`);
-  console.log(`Transformed string: ${fn(str)}`);
+// const transformer = function (str, fn) {
+//   console.log(`original string: ${str}`);
+//   console.log(`Transformed string: ${fn(str)}`);
 
-  console.log(`Transformed by ${fn.name}`);
-};
+//   console.log(`Transformed by ${fn.name}`);
+// };
 
-transformer("JavaScript is weird", upperFirstWord);
-transformer("JavaScript is weird", oneWord);
+// transformer("JavaScript is weird", upperFirstWord);
+// transformer("JavaScript is weird", oneWord);
 
-// CALL BACK FUNCTION EXAMPLE
-// add event listeners 2nd arg. is a call back function
-const high5 = function () {
-  console.log(`🖐️`);
-};
+// // CALL BACK FUNCTION EXAMPLE
+// // add event listeners 2nd arg. is a call back function
+// const high5 = function () {
+//   console.log(`🖐️`);
+// };
 
-document.body.addEventListener("click", high5);
+// document.body.addEventListener("click", high5);
 
 // ["Harshal", "Joel", "Teresa"].forEach(high5);
+
+// FUNCTIONS RETURNING FUNCTIONS
+// const greet = function (greeting) {
+//   return function (name) {
+//     console.log(`${greeting} ${name}`);
+//   };
+// };
+
+// const greeterHey = greet("Hey");
+// console.log(greeterHey);
+
+// greeterHey("Harshal");
+// greeterHey("Steven");
+
+// greet("Hello")("Harshal");
+
+// // CHALLENGE
+// const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
+
+// greetArr("Hi")("Harshal");
