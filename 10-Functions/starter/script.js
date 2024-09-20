@@ -124,3 +124,59 @@ const upperFirstWord = function (str) {
 // const greetArr = (greeting) => (name) => console.log(`${greeting} ${name}`);
 
 // greetArr("Hi")("Harshal");
+
+// CALL APPLY AND BIND METHODS
+const lufthansa = {
+  airline: "Lufthansa",
+  iataCode: "LH",
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+const book = lufthansa.book;
+
+lufthansa.book("239", "harshal bhawe");
+lufthansa.book("635", "John Smith");
+console.log(lufthansa);
+
+const eurowings = {
+  airline: "Eurowings",
+  iataCode: "EW",
+  bookings: [],
+  book,
+};
+console.log(eurowings);
+
+// DOES NOT WORK
+// book(23, "Sarah Williams");
+
+// this keyword set to eurowings explicitly
+// CALL method
+book.call(eurowings, 23, "Sarah Williams");
+book.call(lufthansa, 239, "Jeff Grubb");
+
+console.log(eurowings);
+console.log(lufthansa);
+
+const swiss = {
+  airline: "Swiss Airlines",
+  iataCode: "LX",
+  bookings: [],
+};
+book.call(swiss, 676, "Akanksha Palsole");
+console.log(swiss);
+
+// APPLY method
+// takes an ARRAY of data
+// works the same way as the call method
+// not that used in modern day
+const flightData = [583, "George Cooper"];
+book.apply(eurowings, flightData);
+
+// we use this more often in modern JS
+book.call(swiss, ...flightData);
