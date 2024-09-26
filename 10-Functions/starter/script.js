@@ -75,14 +75,14 @@
 // OR BOTH
 
 // FUNCTIONS WITH CALLBACK FUNCTIONS
-const oneWord = function (str) {
-  return str.replace(/ /g, "").toLowerCase();
-};
+// const oneWord = function (str) {
+//   return str.replace(/ /g, "").toLowerCase();
+// };
 
-const upperFirstWord = function (str) {
-  const [first, ...others] = str.split(" ");
-  return [first.toUpperCase(), ...others].join(" ");
-};
+// const upperFirstWord = function (str) {
+//   const [first, ...others] = str.split(" ");
+//   return [first.toUpperCase(), ...others].join(" ");
+// };
 
 // HIGHER ORDER FUNCTION - ABSTRACTION
 // const transformer = function (str, fn) {
@@ -229,3 +229,43 @@ const upperFirstWord = function (str) {
 // const addVAT2 = addTaxRate(0.23);
 // console.log(addVAT2(100));
 // console.log(addVAT2(23));
+
+// CODING CHALLENGE 1
+const poll = {
+  question: "What is your favourite programming language?",
+  options: ["0: JavaScript", "1: Python", "2: Rust", "3:C++"],
+  // This generates [0, 0, 0, 0]. More in the next section!
+  answers: new Array(4).fill(0),
+};
+
+// display results method
+poll.displayResults = function (type = "array") {
+  let input = type;
+  if (input === "string") {
+    console.log(`Poll results are ${this.answers.join(", ")}`);
+  } else console.log(this.answers);
+};
+
+// register answer method
+poll.registerNewAnswer = function () {
+  const answer = Number(
+    prompt(
+      `${this.question}\n${this.options.join("\n")}\n(Write option number)`
+    )
+  );
+  if (answer < 0 || answer > 3 || typeof answer != "number") {
+    alert("Only NUMBERS between 0 and 3 accepted");
+  } else this.answers[answer] += 1;
+  this.displayResults();
+  this.displayResults("string");
+};
+
+// button selector and event handler
+const buttonPoll = document.querySelector(".poll");
+buttonPoll.addEventListener("click", poll.registerNewAnswer.bind(poll));
+
+const data1 = [5, 2, 3];
+const data2 = [1, 5, 3, 9, 6, 1];
+// reassign the this keyword using call
+poll.displayResults.call({ answers: data1 }, "string");
+poll.displayResults.call({ answers: data2 }, "string");
