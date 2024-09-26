@@ -231,41 +231,65 @@
 // console.log(addVAT2(23));
 
 // CODING CHALLENGE 1
-const poll = {
-  question: "What is your favourite programming language?",
-  options: ["0: JavaScript", "1: Python", "2: Rust", "3:C++"],
-  // This generates [0, 0, 0, 0]. More in the next section!
-  answers: new Array(4).fill(0),
-};
+// const poll = {
+//   question: "What is your favourite programming language?",
+//   options: ["0: JavaScript", "1: Python", "2: Rust", "3:C++"],
+//   // This generates [0, 0, 0, 0]. More in the next section!
+//   answers: new Array(4).fill(0),
+// };
 
-// display results method
-poll.displayResults = function (type = "array") {
-  let input = type;
-  if (input === "string") {
-    console.log(`Poll results are ${this.answers.join(", ")}`);
-  } else console.log(this.answers);
-};
+// // display results method
+// poll.displayResults = function (type = "array") {
+//   let input = type;
+//   if (input === "string") {
+//     console.log(`Poll results are ${this.answers.join(", ")}`);
+//   } else console.log(this.answers);
+// };
 
-// register answer method
-poll.registerNewAnswer = function () {
-  const answer = Number(
-    prompt(
-      `${this.question}\n${this.options.join("\n")}\n(Write option number)`
-    )
-  );
-  if (answer < 0 || answer > 3 || typeof answer != "number") {
-    alert("Only NUMBERS between 0 and 3 accepted");
-  } else this.answers[answer] += 1;
-  this.displayResults();
-  this.displayResults("string");
-};
+// // register answer method
+// poll.registerNewAnswer = function () {
+//   const answer = Number(
+//     prompt(
+//       `${this.question}\n${this.options.join("\n")}\n(Write option number)`
+//     )
+//   );
+//   if (answer < 0 || answer > 3 || typeof answer != "number") {
+//     alert("Only NUMBERS between 0 and 3 accepted");
+//   } else this.answers[answer] += 1;
+//   this.displayResults();
+//   this.displayResults("string");
+// };
 
-// button selector and event handler
-const buttonPoll = document.querySelector(".poll");
-buttonPoll.addEventListener("click", poll.registerNewAnswer.bind(poll));
+// // button selector and event handler
+// const buttonPoll = document.querySelector(".poll");
+// buttonPoll.addEventListener("click", poll.registerNewAnswer.bind(poll));
 
-const data1 = [5, 2, 3];
-const data2 = [1, 5, 3, 9, 6, 1];
-// reassign the this keyword using call
-poll.displayResults.call({ answers: data1 }, "string");
-poll.displayResults.call({ answers: data2 }, "string");
+// const data1 = [5, 2, 3];
+// const data2 = [1, 5, 3, 9, 6, 1];
+// // reassign the this keyword using call
+// poll.displayResults.call({ answers: data1 }, "string");
+// poll.displayResults.call({ answers: data2 }, "string");
+
+// IMMEDIATELY INVOKED FUNCTION EXPRESSIONS (IIFE)
+// NOT THAT COMMON ANYMORE
+
+// ONE WAY
+// const runOnce = function () {
+//   console.log(`This will never run again`);
+// };
+
+// runOnce();
+
+// we short circuit JS by wrapping with ()
+(function () {
+  console.log(`This will never run again`);
+})();
+// empty parentheses signify a "function" call
+(() => console.log(`This will ALSO never run again`))();
+
+{
+  const isPrivate = 23;
+  var notPrivate = 23;
+}
+// console.log(isPrivate);
+console.log(notPrivate);
