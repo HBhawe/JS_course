@@ -126,57 +126,106 @@ const upperFirstWord = function (str) {
 // greetArr("Hi")("Harshal");
 
 // CALL APPLY AND BIND METHODS
-const lufthansa = {
-  airline: "Lufthansa",
-  iataCode: "LH",
-  bookings: [],
-  book(flightNum, name) {
-    console.log(
-      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
-    );
-    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
-  },
-};
+// const lufthansa = {
+//   airline: "Lufthansa",
+//   iataCode: "LH",
+//   bookings: [],
+//   book(flightNum, name) {
+//     console.log(
+//       `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+//     );
+//     this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+//   },
+// };
 
-const book = lufthansa.book;
+// const book = lufthansa.book;
 
-lufthansa.book("239", "harshal bhawe");
-lufthansa.book("635", "John Smith");
-console.log(lufthansa);
+// lufthansa.book("239", "harshal bhawe");
+// lufthansa.book("635", "John Smith");
+// console.log(lufthansa);
 
-const eurowings = {
-  airline: "Eurowings",
-  iataCode: "EW",
-  bookings: [],
-  book,
-};
-console.log(eurowings);
+// const eurowings = {
+//   airline: "Eurowings",
+//   iataCode: "EW",
+//   bookings: [],
+//   book,
+// };
+// console.log(eurowings);
 
 // DOES NOT WORK
 // book(23, "Sarah Williams");
 
 // this keyword set to eurowings explicitly
 // CALL method
-book.call(eurowings, 23, "Sarah Williams");
-book.call(lufthansa, 239, "Jeff Grubb");
+// book.call(eurowings, 23, "Sarah Williams");
+// book.call(lufthansa, 239, "Jeff Grubb");
 
-console.log(eurowings);
-console.log(lufthansa);
+// console.log(eurowings);
+// console.log(lufthansa);
 
-const swiss = {
-  airline: "Swiss Airlines",
-  iataCode: "LX",
-  bookings: [],
-};
-book.call(swiss, 676, "Akanksha Palsole");
-console.log(swiss);
+// const swiss = {
+//   airline: "Swiss Airlines",
+//   iataCode: "LX",
+//   bookings: [],
+// };
+// // book.call(swiss, 676, "Akanksha Palsole");
+// // console.log(swiss);
 
-// APPLY method
-// takes an ARRAY of data
-// works the same way as the call method
-// not that used in modern day
-const flightData = [583, "George Cooper"];
-book.apply(eurowings, flightData);
+// // // APPLY method
+// // // takes an ARRAY of data
+// // // works the same way as the call method
+// // // not that used in modern day
+// // const flightData = [583, "George Cooper"];
+// // book.apply(eurowings, flightData);
 
-// we use this more often in modern JS
-book.call(swiss, ...flightData);
+// // // we use this more often in modern JS
+// // book.call(swiss, ...flightData);
+
+// // bind method
+// const bookEW = book.bind(eurowings);
+// const bookLH = book.bind(lufthansa);
+// const bookLW = book.bind(swiss);
+
+// bookEW(23, "Steven Williams");
+
+// // hyper specific binds
+// // partial application
+// const bookEW23 = book.bind(eurowings, 23);
+// bookEW23("abc");
+
+// // with event listeners
+// lufthansa.planes = 300;
+// lufthansa.buyPlane = function () {
+//   console.log(this);
+//   this.planes++;
+//   console.log(this.planes);
+// };
+// // console.log(lufthansa);
+
+// const buttonBuy = document.querySelector(".buy");
+
+// // this won't work as the 'this' keyword is attached to the event handler
+// // buttonBuy.addEventListener("click", lufthansa.buyPlane);
+
+// // this is how we use the bind method to reassign the 'this' keyword
+// buttonBuy.addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+
+// // PARTIAL application
+// const addTax = (rate, value) => value + value * rate;
+
+// console.log(addTax(0.1, 200));
+
+// // we don't care about the this keyword here so we send null
+// const addVat = addTax.bind(null, 0.23);
+// console.log(addVat(200));
+
+// // CODING CHALLENGE
+// const addTaxRate = function (rate) {
+//   return function (value) {
+//     return value + value * rate;
+//   };
+// };
+
+// const addVAT2 = addTaxRate(0.23);
+// console.log(addVAT2(100));
+// console.log(addVAT2(23));
