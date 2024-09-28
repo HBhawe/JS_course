@@ -159,8 +159,6 @@ movements.forEach(function (mov, i, arr) {
   if (mov > 0) {
     console.log(`Deposit ${i + 1} - ${mov}`);
   } else console.log(`Withdrawal ${i + 1} - ${Math.abs(mov)}`);
-
-  // console.log(arr);
 });
 
 // FOR-OF VS. FOR-EACH
