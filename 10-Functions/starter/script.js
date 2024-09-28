@@ -295,6 +295,7 @@
 // console.log(notPrivate);
 
 // CLOSURES
+// super weird concept that technically shouldn't work
 
 const secureBooking = function () {
   let passengerCount = 0;
@@ -309,3 +310,5 @@ const booker = secureBooking();
 booker();
 booker();
 booker();
+
+console.dir(booker);
