@@ -142,7 +142,7 @@ const currencies = new Map([
 // FOR-EACH LOOP
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
+/*
 console.log(`----FOR-OF----`);
 for (const [i, movement] of movements.entries()) {
   if (movement > 0) {
@@ -154,6 +154,7 @@ for (const [i, movement] of movements.entries()) {
 console.log();
 
 console.log(`----FOR-EACH----`);
+
 // iterates over each element and executes the callback function
 movements.forEach(function (mov, i, arr) {
   if (mov > 0) {
@@ -163,3 +164,4 @@ movements.forEach(function (mov, i, arr) {
 
 // FOR-OF VS. FOR-EACH
 // break and continue do not work in for-each
+*/
