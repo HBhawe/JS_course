@@ -71,7 +71,7 @@ const currencies = new Map([
   ["GBP", "Pound sterling"],
 ]);
 
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
 
@@ -120,20 +120,48 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // console.log(letters.join(" - "));
 
 // ARRAYS 2
-const arr = [23, 11, 64];
+// const arr = [23, 11, 64];
 
-// traditional way of doing this
-console.log(arr[0]);
+// // traditional way of doing this
+// console.log(arr[0]);
 
-// NEW IN ES 2022
-console.log(arr.at(0));
+// // NEW IN ES 2022
+// console.log(arr.at(0));
 
-// last element - traditional ways
-console.log(arr[arr.length - 1]);
-console.log(arr.slice(-1)[0]);
+// // last element - traditional ways
+// console.log(arr[arr.length - 1]);
+// console.log(arr.slice(-1)[0]);
 
-// NEW IN ES 2022
-console.log(arr.at(-1));
+// // NEW IN ES 2022
+// console.log(arr.at(-1));
 
-// also works on strings
-console.log("Harshal".at(-1));
+// // also works on strings
+// console.log("Harshal".at(-1));
+
+// ARRAYS 3
+// FOR-EACH LOOP
+
+const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+console.log(`----FOR-OF----`);
+for (const [i, movement] of movements.entries()) {
+  if (movement > 0) {
+    console.log(`Deposit ${i + 1} - ${movement}`);
+  } else {
+    console.log(`Withdrawal ${i + 1} - ${Math.abs(movement)}`);
+  }
+}
+console.log();
+
+console.log(`----FOR-EACH----`);
+// iterates over each element and executes the callback function
+movements.forEach(function (mov, i, arr) {
+  if (mov > 0) {
+    console.log(`Deposit ${i + 1} - ${mov}`);
+  } else console.log(`Withdrawal ${i + 1} - ${Math.abs(mov)}`);
+
+  // console.log(arr);
+});
+
+// FOR-OF VS. FOR-EACH
+// break and continue do not work in for-each
