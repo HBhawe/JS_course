@@ -199,9 +199,7 @@ btnTransfer.addEventListener("click", function (e) {
 btnClose.addEventListener("click", function (e) {
   e.preventDefault();
 
-  // console.log(currentAccount);
-  // console.log(inputCloseUsername.value, inputClosePin.value);
-  // check if the user beinf deleted is the current user and has the correct pin
+  // check if the user being deleted is the current user and has the correct pin
   if (
     inputCloseUsername.value === currentAccount.username &&
     Number(inputClosePin.value) === currentAccount.pin
@@ -209,7 +207,6 @@ btnClose.addEventListener("click", function (e) {
     const index = accounts.findIndex(
       (acc) => acc.username === currentAccount.username
     );
-    // console.log(index);
 
     // delete account
     accounts.splice(index, 1);
