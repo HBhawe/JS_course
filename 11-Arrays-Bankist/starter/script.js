@@ -195,6 +195,7 @@ const currencies = new Map([
 //   console.log(`${_value}: ${value}`);
 // });
 
+/*
 const checkDogs = function (dogsJulia, dogsKate) {
   const dogsJuliaCorrected = dogsJulia.slice();
   dogsJuliaCorrected.splice(0, 1);
@@ -212,3 +213,45 @@ const checkDogs = function (dogsJulia, dogsKate) {
 
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+*/
+
+// DATA TRANSFORMATION
+
+// MAP METHOD
+// const arr = [3, 1, 4, 3, 2];
+
+// arr.map(function (value, index, array) {
+//   console.log(`at ${index + 1} position, we have ${value}`);
+// });
+
+const eurToUsd = 1.1;
+
+// old method
+/*
+const movementsUSDfor = [];
+for (const mov of movements) {
+  movementsUSDfor.push(mov * eurToUsd);
+}
+console.log(movementsUSDfor);
+*/
+
+// FUNCTIONAL PROGRAMMING
+const movementsUSD = movements.map(function (mov) {
+  return mov * eurToUsd;
+});
+
+// ARROW FUNCTION
+const movementsUSDArrow = movements.map((mov) => mov * eurToUsd);
+
+// console.log(movements);
+// console.log(movementsUSD);
+// console.log(movementsUSDArrow);
+
+// ARROW FUNCTION
+// returns an array instead of logging to console
+const movementsDescriptions = movements.map(
+  (mov, i) =>
+    `${mov > 0 ? "Deposit" : "Withdrawal"} ${i + 1} : ${Math.abs(mov)}`
+);
+
+console.log(movementsDescriptions);
