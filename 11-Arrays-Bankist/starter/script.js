@@ -77,6 +77,14 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+const calcDisplayBalance = function (movements) {
+  // labelBalance.innerHTML = "";
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} EUR`;
+};
+
+calcDisplayBalance(account1.movements);
+
 // const user = "Steven Thomas Williams"; //stw
 
 // convert to lowercase, create a string array, take the first letter from each and join with empty string
@@ -278,6 +286,7 @@ console.log(movementsDescriptions);
 // FILTER METHOD
 
 // takes only the positive elements and saves it to a new array
+/*
 const deposits = movements.filter((mov) => mov > 0);
 console.log(movements);
 console.log(deposits);
@@ -285,3 +294,45 @@ console.log(deposits);
 // takes only the negative elements and saves it to a new array
 const withdrawals = movements.filter((mov) => mov < 0);
 console.log(withdrawals);
+*/
+
+// REDUCE METHOD
+// reduces array to 1 answer
+// console.log(movements);
+
+// 1st element of reduce callback is something called the "accumulator"
+// like a snowball - collects elements
+// 2nd parameter - initial value of the accumulator (,0 in this case)
+// we can set this starting value to anything we want
+
+/*
+const balance = movements.reduce(function (acc, cur, i, arr) {
+  console.log(`Iteration ${i}: ${acc}`);
+  return acc + cur;
+}, 0);
+console.log(balance);
+*/
+
+// testing with letters
+/*
+const letters = ["h", "a", "r", "s", "h", "a", "l"];
+const letterName = letters.reduce((acc, cur, i, arr) => acc + cur, "");
+console.log(letterName);
+*/
+
+/*
+// MAXIMUM VALUE
+// uses a ternary operator and an arrow function to get the maximum value
+const maxValue = movements.reduce(
+  (acc, mov) => (acc > mov ? acc : mov),
+  movements[0]
+);
+console.log(maxValue);
+
+// MINIMUM VALUE
+const minValue = movements.reduce(
+  (acc, mov) => (acc < mov ? acc : mov),
+  movements[0]
+);
+console.log(minValue);
+*/
