@@ -336,3 +336,16 @@ const minValue = movements.reduce(
 );
 console.log(minValue);
 */
+
+// CODING CHALLENGE 2 and 3
+// I initially made 3 separate methods but for convenience I chained them all together
+const calcAverageHumanAge = function (ages) {
+  const humanAge = ages
+    .map((age) => (age > 2 ? 16 + age * 4 : 2 * age))
+    .filter((age) => age >= 18)
+    .reduce((acc, age, i, arr) => acc + age / arr.length, 0);
+  return humanAge;
+};
+
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
