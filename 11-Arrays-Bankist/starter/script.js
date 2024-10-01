@@ -61,6 +61,8 @@ const inputLoanAmount = document.querySelector(".form__input--loan-amount");
 const inputCloseUsername = document.querySelector(".form__input--user");
 const inputClosePin = document.querySelector(".form__input--pin");
 
+const eurToUsd = 1.1;
+
 const displayMovements = function (movements) {
   containerMovements.innerHTML = "";
   movements.forEach(function (mov, i) {
@@ -69,7 +71,7 @@ const displayMovements = function (movements) {
           <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-          <div class="movements__value">${mov}</div>
+          <div class="movements__value">${mov}€</div>
         </div>`;
     containerMovements.insertAdjacentHTML("afterbegin", html);
   });
@@ -80,10 +82,34 @@ displayMovements(account1.movements);
 const calcDisplayBalance = function (movements) {
   // labelBalance.innerHTML = "";
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance} EUR`;
+  labelBalance.textContent = `${balance} €`;
 };
 
 calcDisplayBalance(account1.movements);
+
+const calcDisplaySummary = function (movements) {
+  // calculate deposits
+  const income = movements
+    .filter((mov) => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${income} €`;
+
+  // calculate withdrawals
+  const outgoing = movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outgoing)} €`;
+
+  // calculate interest
+  const interest = movements
+    .filter((mov) => mov > 0)
+    .map((deposit) => deposit * 0.012)
+    .filter((i) => i >= 1)
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${interest} €`;
+};
+
+calcDisplaySummary(account1.movements);
 
 // const user = "Steven Thomas Williams"; //stw
 
@@ -249,8 +275,6 @@ checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
 //   console.log(`at ${index + 1} position, we have ${value}`);
 // });
 
-const eurToUsd = 1.1;
-
 // old method
 /*
 const movementsUSDfor = [];
@@ -339,6 +363,7 @@ console.log(minValue);
 
 // CODING CHALLENGE 2 and 3
 // I initially made 3 separate methods but for convenience I chained them all together
+/*
 const calcAverageHumanAge = function (ages) {
   const humanAge = ages
     .map((age) => (age > 2 ? 16 + age * 4 : 2 * age))
@@ -349,3 +374,17 @@ const calcAverageHumanAge = function (ages) {
 
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+*/
+
+// we can keep chaining as long as the previous method returns an array
+// we cannot chain anything after reduce as it returns a single value
+// the current "arr" value in the callback function can be used to check the value during the operation
+const totalDepositsUSD = movements
+  .filter((mov) => mov > 0)
+  // .map((mov) => mov * eurToUsd)
+  .map((mov, i, arr) => {
+    // console.log(arr);
+    return mov * eurToUsd;
+  })
+  .reduce((acc, mov) => acc + mov);
+console.log(totalDepositsUSD);
