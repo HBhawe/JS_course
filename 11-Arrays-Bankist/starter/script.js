@@ -364,6 +364,7 @@ console.log(minValue);
 // CODING CHALLENGE 2 and 3
 // I initially made 3 separate methods but for convenience I chained them all together
 
+/*
 const calcAverageHumanAge = (ages) =>
   ages
     .map((age) => (age > 2 ? 16 + age * 4 : 2 * age))
@@ -372,6 +373,7 @@ const calcAverageHumanAge = (ages) =>
 
 console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]));
 console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4]));
+*/
 
 // we can keep chaining as long as the previous method returns an array
 // we cannot chain anything after reduce as it returns a single value
@@ -387,3 +389,17 @@ const totalDepositsUSD = movements
   .reduce((acc, mov) => acc + mov);
 console.log(totalDepositsUSD);
 */
+
+// FIND METHOD
+
+// first value that meets the conditions
+// only returns 1 element. NOT AN ARRAY
+
+// const firstWithdrawal = movements.find((mov) => mov < 0);
+
+// console.log(movements);
+// console.log(firstWithdrawal);
+
+// console.log(accounts);
+// const account = accounts.find((acc) => acc.owner === "Jessica Davis");
+// console.log(account);
