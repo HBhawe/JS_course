@@ -76,6 +76,23 @@ const displayMovements = function (movements) {
 };
 
 displayMovements(account1.movements);
+
+// const user = "Steven Thomas Williams"; //stw
+
+// convert to lowercase, create a string array, take the first letter from each and join with empty string
+// we use forEach as we want to mutate the original accounts arrays and add the username property.
+const createUsername = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map((name) => name[0])
+      .join("");
+  });
+};
+
+createUsername(accounts);
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -236,6 +253,7 @@ console.log(movementsUSDfor);
 */
 
 // FUNCTIONAL PROGRAMMING
+/*
 const movementsUSD = movements.map(function (mov) {
   return mov * eurToUsd;
 });
@@ -255,3 +273,4 @@ const movementsDescriptions = movements.map(
 );
 
 console.log(movementsDescriptions);
+*/
