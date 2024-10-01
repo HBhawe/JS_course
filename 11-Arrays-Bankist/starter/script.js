@@ -274,3 +274,14 @@ const movementsDescriptions = movements.map(
 
 console.log(movementsDescriptions);
 */
+
+// FILTER METHOD
+
+// takes only the positive elements and saves it to a new array
+const deposits = movements.filter((mov) => mov > 0);
+console.log(movements);
+console.log(deposits);
+
+// takes only the negative elements and saves it to a new array
+const withdrawals = movements.filter((mov) => mov < 0);
+console.log(withdrawals);
