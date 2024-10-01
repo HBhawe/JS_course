@@ -193,6 +193,35 @@ btnTransfer.addEventListener("click", function (e) {
   }
 });
 
+// FIND INDEX
+// close account feature
+
+btnClose.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // console.log(currentAccount);
+  // console.log(inputCloseUsername.value, inputClosePin.value);
+  // check if the user beinf deleted is the current user and has the correct pin
+  if (
+    inputCloseUsername.value === currentAccount.username &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      (acc) => acc.username === currentAccount.username
+    );
+    // console.log(index);
+
+    // delete account
+    accounts.splice(index, 1);
+
+    // hide UI
+    containerApp.style.opacity = 0;
+  }
+
+  inputCloseUsername.value = inputClosePin.value = "";
+  labelWelcome.textContent = "Log in to get started";
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
