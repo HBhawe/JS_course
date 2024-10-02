@@ -193,6 +193,23 @@ btnTransfer.addEventListener("click", function (e) {
   }
 });
 
+// REQUEST LOAN FEATURE
+btnLoan.addEventListener("click", function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+
+  // check if the amount is greater than 0 and the loan amount is atleast 10% of an existing deposit
+  if (
+    amount > 0 &&
+    currentAccount.movements.some((mov) => mov >= amount * 0.1)
+  ) {
+    // console.log(`loan accepted`);
+    currentAccount.movements.push(amount);
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = "";
+});
+
 // FIND INDEX
 // close account feature
 
@@ -495,3 +512,24 @@ console.log(totalDepositsUSD);
 // console.log(accounts);
 // const account = accounts.find((acc) => acc.owner === "Jessica Davis");
 // console.log(account);
+
+// SOME METHOD
+// console.log(movements);
+
+// check if array contains value - returns a boolean
+// only works for equality
+// console.log(movements.includes(-130));
+
+// checks conditions and returns a boolean
+const anyDeposits = movements.some((mov) => mov > 1500);
+console.log(anyDeposits);
+
+// EVERY METHOD
+// ONLY RETURNS TRUE IF ALL ELEMENTS SATISFY THE CONDITIONS
+console.log(account4.movements.every((mov) => mov > 0));
+
+// separate callback
+const deposit = (mov) => mov > 0;
+console.log(movements.some(deposit));
+console.log(movements.every(deposit));
+console.log(movements.filter(deposit));
