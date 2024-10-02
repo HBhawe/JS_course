@@ -203,7 +203,6 @@ btnLoan.addEventListener("click", function (e) {
     amount > 0 &&
     currentAccount.movements.some((mov) => mov >= amount * 0.1)
   ) {
-    // console.log(`loan accepted`);
     currentAccount.movements.push(amount);
     updateUI(currentAccount);
   }
@@ -521,6 +520,7 @@ console.log(totalDepositsUSD);
 // console.log(movements.includes(-130));
 
 // checks conditions and returns a boolean
+/*
 const anyDeposits = movements.some((mov) => mov > 1500);
 console.log(anyDeposits);
 
@@ -533,3 +533,42 @@ const deposit = (mov) => mov > 0;
 console.log(movements.some(deposit));
 console.log(movements.every(deposit));
 console.log(movements.filter(deposit));
+*/
+
+// FLAT AND FLATMAP
+/*
+const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+console.log(arr.flat());
+
+// FLAT METHOD without arguments only goes one level deep
+const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+console.log(arrDeep.flat());
+
+// the argument gives us the depth of flattening the array.
+// 2 in this case means 2 levels deep
+console.log(arrDeep.flat(2));
+
+// creates a nested array of all movements
+const accountMovements = accounts.map((acc) => acc.movements);
+console.log(accountMovements);
+const allMovements = accountMovements.flat();
+console.log(allMovements);
+
+// const overallBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
+// console.log(overallBalance);
+
+// chained methods
+// MAP and then FLAT is very common to use together
+const overallBalance = accounts
+  .map((acc) => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance);
+
+// FLATMAP is a combination of MAP and FLAT
+// this only goes 1 level deep
+const overallBalance2 = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(overallBalance2);
+*/
