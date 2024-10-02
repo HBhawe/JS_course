@@ -805,3 +805,30 @@ console.log(ownersEatTooMuch);
 console.log(ownersEatTooLittle);
 
 // 4.
+console.log(`${ownersEatTooMuch.join(" and ")}'s dogs eat too much!`);
+
+console.log(`${ownersEatTooLittle.join(" and ")}'s dogs eat too little!`);
+
+// 5.
+console.log(dogs.some((dog) => dog.curFood === dog.recFood));
+
+// 6.
+
+const eatEnough = (dog) =>
+  dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1;
+
+console.log(dogs.some(eatEnough));
+
+// 7.
+
+// console.log(
+//   dogs.filter(
+//     (dog) => dog.curFood > dog.recFood * 0.9 && dog.curFood < dog.recFood * 1.1
+//   )
+// );
+
+console.log(dogs.filter(eatEnough));
+
+// 8.
+const dogsSorted = dogs.slice().sort((a, b) => a.recFood - b.recFood);
+console.log(dogsSorted);
