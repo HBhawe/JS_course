@@ -585,6 +585,8 @@ console.log(overallBalance2);
 
 // SORTING ARRAYS
 // mutates the original array
+
+/*
 const owners = ["Jonas", "Zach", "Adam", "Martha"];
 // console.log(owners.sort());
 
@@ -624,3 +626,48 @@ console.log(movements);
 // descending
 movements.sort((a, b) => b - a);
 console.log(movements);
+*/
+
+// PROGRAMMATICALLY CREATE ARRAYS
+// the line below creates an empty array with 7 empty elements
+// this is VERY WEIRD and should be kept in mind
+const x = new Array(7);
+console.log(x);
+
+const arr = [1, 2, 3, 4, 5, 6, 7];
+
+// this does not work
+console.log(x.map(() => 5));
+
+// fills the ENTIRE array with 1
+// MUTATES THE ARRAY
+// console.log(x.fill(1));
+
+// starts at index
+console.log(x.fill(1, 3, 5));
+
+// pre-filling array with 7 1's
+const y = Array.from({ length: 7 }, () => 1);
+console.log(y);
+
+// use "_" to denote unused parameters
+const z = Array.from({ length: 7 }, (_, i) => i + 1);
+console.log(z);
+
+// 100 dice rolls
+const diceRolls = Array.from(
+  { length: 100 },
+  () => Math.floor(Math.random() * 6) + 1
+);
+console.log(diceRolls);
+
+// we create an event listener to grab all the values from the movement value
+// we then create an array from the nodelist and then replace the euro sign with empty string
+labelBalance.addEventListener("click", function (e) {
+  e.preventDefault();
+  const movementUI = Array.from(
+    document.querySelectorAll(".movements__value"),
+    (el) => Number(el.textContent.replace("€", ""))
+  );
+  console.log(movementUI);
+});
