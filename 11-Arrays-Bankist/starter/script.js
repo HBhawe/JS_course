@@ -681,6 +681,8 @@ labelBalance.addEventListener("click", function (e) {
 // const bankDeposits = accounts.map((acc) => acc.movements).flat();
 
 // flat, map, filter and reduce together
+
+/*
 const bankDeposits = accounts
   .flatMap((acc) => acc.movements)
   .filter((mov) => mov > 0)
@@ -734,6 +736,8 @@ console.log(convertTitleCase("this is a nice title"));
 console.log(convertTitleCase("this is a LONG title but not too long"));
 console.log(convertTitleCase("and here is another title with an EXAMPLE"));
 
+*/
+
 ///////////////////////////////////////
 // Coding Challenge #4
 
@@ -753,14 +757,51 @@ Eating an okay amount means the dog's current food portion is within a range 10%
 
 HINT 1: Use many different tools to solve these challenges, you can use the summary lecture to choose between them 😉
 HINT 2: Being within a range 10% above and below the recommended portion means: current > (recommended * 0.90) && current < (recommended * 1.10). Basically, the current portion should be between 90% and 110% of the recommended portion.
+GOOD LUCK 😀
+
 
 TEST DATA:
+*/
+
 const dogs = [
-  { weight: 22, curFood: 250, owners: ['Alice', 'Bob'] },
-  { weight: 8, curFood: 200, owners: ['Matilda'] },
-  { weight: 13, curFood: 275, owners: ['Sarah', 'John'] },
-  { weight: 32, curFood: 340, owners: ['Michael'] }
+  { weight: 22, curFood: 250, owners: ["Alice", "Bob"] },
+  { weight: 8, curFood: 200, owners: ["Matilda"] },
+  { weight: 13, curFood: 275, owners: ["Sarah", "John"] },
+  { weight: 32, curFood: 340, owners: ["Michael"] },
 ];
 
-GOOD LUCK 😀
-*/
+// 1.
+// MAP
+// dogs.map((dog, index) => {
+//   dog.recommendedFood = Number(dog.weight ** 0.75 * 28);
+// });
+
+// console.log(dogs);
+
+// FOR-EACH
+dogs.forEach((dog) => {
+  dog.recFood = Math.trunc(dog.weight ** 0.75 * 28);
+});
+console.log(dogs);
+
+// 2.
+const dogSarah = dogs.find((dog) => dog.owners.includes("Sarah"));
+console.log(dogSarah);
+const sarahMessage = `Sarah's dog is eating too ${
+  dogSarah.curFood > dogSarah.recFood ? "much" : "little"
+}`;
+console.log(sarahMessage);
+
+// 3.
+const ownersEatTooMuch = dogs
+  .filter((dog) => dog.curFood > dog.recFood)
+  .flatMap((dog) => dog.owners);
+
+const ownersEatTooLittle = dogs
+  .filter((dog) => dog.curFood < dog.recFood)
+  .flatMap((dog) => dog.owners);
+
+console.log(ownersEatTooMuch);
+console.log(ownersEatTooLittle);
+
+// 4.
