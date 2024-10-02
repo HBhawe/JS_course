@@ -631,6 +631,8 @@ console.log(movements);
 // PROGRAMMATICALLY CREATE ARRAYS
 // the line below creates an empty array with 7 empty elements
 // this is VERY WEIRD and should be kept in mind
+
+/*
 const x = new Array(7);
 console.log(x);
 
@@ -671,3 +673,4 @@ labelBalance.addEventListener("click", function (e) {
   );
   console.log(movementUI);
 });
+*/
