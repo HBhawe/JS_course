@@ -299,7 +299,7 @@ console.log(Number.isFinite(23 / 0));
 
 // 2
 // MATHS AND ROUNDING
-
+/*
 // square root
 console.log(Math.sqrt(25));
 
@@ -353,3 +353,22 @@ console.log((2.7).toFixed(0));
 console.log((2.7).toFixed(3)); //adds decimal places
 console.log((2.345).toFixed(2));
 console.log(+(2.345).toFixed(2));
+*/
+
+// 3
+// REMAINDER
+console.log(5 % 2);
+
+console.log(6 % 2);
+
+const evenOdd = (num) => (num % 2 === 0 ? `even` : `odd`);
+console.log(evenOdd(4));
+console.log(evenOdd(5));
+console.log(evenOdd(45678));
+
+labelBalance.addEventListener("click", function () {
+  [...document.querySelectorAll(".movements__row")].forEach(function (row, i) {
+    if (i % 2 === 0) row.style.backgroundColor = "orangered";
+    if (i % 3 === 0) row.style.backgroundColor = "blue";
+  });
+});
