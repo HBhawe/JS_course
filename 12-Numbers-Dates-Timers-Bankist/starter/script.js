@@ -357,6 +357,7 @@ console.log(+(2.345).toFixed(2));
 
 // 3
 // REMAINDER
+/*
 console.log(5 % 2);
 
 console.log(6 % 2);
@@ -372,3 +373,26 @@ labelBalance.addEventListener("click", function () {
     if (i % 3 === 0) row.style.backgroundColor = "blue";
   });
 });
+*/
+
+// 4. NUMERIC SEPARATORS
+// 287,460,000,000
+// underscores where the commas are
+// JS ignores this - displays the whole value.
+const diameter = 287_460_000_000;
+console.log(diameter);
+
+const price = 345_99;
+console.log(price);
+
+const transferFee1 = 15_00;
+const transferFee2 = 1_500;
+
+// not allowed at the start, end of a number or next to decimal separators
+const PI = 3.1415;
+console.log(PI);
+
+// numeric separators do not work for strings with type coercion
+console.log(Number("23000"));
+console.log(Number("23_000"));
+console.log(parseInt("23_000"));
