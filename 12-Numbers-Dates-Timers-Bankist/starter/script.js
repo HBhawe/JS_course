@@ -199,14 +199,42 @@ const updateUI = function (acc) {
   calcDisplaySummary(acc);
 };
 
+// LOGOUT TIMER
+const startLogoutTimer = function () {
+  // start timer
+  const tick = function () {
+    // in each call display the remaining time
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const seconds = String(time % 60).padStart(2, 0);
+    labelTimer.textContent = `${min}:${seconds}`;
+
+    // log the user out if the timer reaches 0
+    if (time === 0) {
+      clearInterval(timer);
+      containerApp.style.opacity = 0;
+      labelWelcome.textContent = "Log in to get started";
+    }
+
+    // count it down
+    time--;
+  };
+  let time = 600;
+  // call the timer every second
+  tick();
+  const timer = setInterval(tick, 1000);
+  return timer;
+
+  // log the user out if the timer reaches 0
+};
+
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 
 // FAKE ALWAYS LOG IN
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
 // experimentation with internationalisation API
 // const now = new Date();
@@ -223,6 +251,7 @@ containerApp.style.opacity = 100;
 
 // labelDate.textContent = new Intl.DateTimeFormat(locale, options).format();
 
+// LOGIN
 btnLogin.addEventListener("click", function (e) {
   // Prevent form from submitting
   e.preventDefault();
@@ -265,11 +294,17 @@ btnLogin.addEventListener("click", function (e) {
     inputLoginUsername.value = inputLoginPin.value = "";
     inputLoginPin.blur();
 
+    // clear pre-existing timer
+    if (timer) clearInterval(timer);
+    // start logout timer
+    timer = startLogoutTimer();
+
     // Update UI
     updateUI(currentAccount);
   }
 });
 
+// TRANSFER
 btnTransfer.addEventListener("click", function (e) {
   e.preventDefault();
   const amount = +inputTransferAmount.value;
@@ -293,6 +328,10 @@ btnTransfer.addEventListener("click", function (e) {
     receiverAcc.movementsDates.push(new Date().toISOString());
     // Update UI
     updateUI(currentAccount);
+
+    // reset timer
+    clearInterval(timer);
+    timer = startLogoutTimer();
   }
 });
 
@@ -316,6 +355,8 @@ btnLoan.addEventListener("click", function (e) {
 
       // Update UI
       updateUI(currentAccount);
+      clearInterval(timer);
+      timer = startLogoutTimer();
     }, 2500);
   }
   inputLoanAmount.value = "";
@@ -645,7 +686,7 @@ const pizzaTimer = setTimeout(
 );
 
 if (ingredients.includes("spinach")) clearTimeout(pizzaTimer);
-*/
+
 
 // setInterval
 setInterval(() => {
@@ -653,3 +694,4 @@ setInterval(() => {
   console.log(`${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`);
   // console.log(now);
 }, 1000);
+*/
