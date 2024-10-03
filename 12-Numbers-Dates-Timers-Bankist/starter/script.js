@@ -379,6 +379,7 @@ labelBalance.addEventListener("click", function () {
 // 287,460,000,000
 // underscores where the commas are
 // JS ignores this - displays the whole value.
+/*
 const diameter = 287_460_000_000;
 console.log(diameter);
 
@@ -396,3 +397,37 @@ console.log(PI);
 console.log(Number("23000"));
 console.log(Number("23_000"));
 console.log(parseInt("23_000"));
+*/
+
+// BIG INT
+// biggest number JS can safely represent
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+
+// this won't work
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+
+// big int
+console.log(53347583456348765384658345837465n);
+console.log(BigInt(34573856348567834568953596734593456739456768));
+
+// operations
+console.log(10000n + 10000n);
+console.log(56784694594567974596874576n * 34737845283756293749n);
+
+const huge = 5968745968769467945679456745967495n;
+const num = 23;
+// console.log(huge * num); //this won't work
+console.log(huge * BigInt(num));
+
+console.log(20n > 15);
+console.log(20n === 20); //no type coercion of "===" so it will return false
+console.log(typeof 20n);
+console.log(20n == 20); //this returns true
+console.log(20n == "20"); //this returns true
+
+console.log(huge + " is really BIG"); //converts to string
+
+// DIVISIONS
+console.log(10n / 3n); // returns the closest bigInt - 3n
