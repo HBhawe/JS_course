@@ -401,6 +401,7 @@ console.log(parseInt("23_000"));
 
 // BIG INT
 // biggest number JS can safely represent
+/*
 console.log(2 ** 53 - 1);
 console.log(Number.MAX_SAFE_INTEGER);
 
@@ -431,3 +432,45 @@ console.log(huge + " is really BIG"); //converts to string
 
 // DIVISIONS
 console.log(10n / 3n); // returns the closest bigInt - 3n
+*/
+
+// DATES AND TIMES
+
+// create a date
+/*
+const now = new Date();
+console.log(now);
+
+console.log(new Date("")); //invalid
+console.log(new Date("Aug 02 2020 18:08:41"));
+console.log(new Date("December 25, 2024"));
+
+console.log(new Date(account1.movementsDates[0]));
+console.log(new Date(2037, 10, 19, 15, 23, 5)); // months in JS are 0 based so 10 is actually November
+console.log(new Date(2037, 10, 31, 15, 23, 5)); // returns 1st dec
+
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000)); // 3 days after 0 - expressed as milliseconds
+*/
+
+// working with dates
+const future = new Date(2037, 10, 19, 15, 23);
+
+// getters
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate()); // day of the month
+console.log(future.getDay()); // day of the week
+console.log(future.getHours());
+console.log(future.getMinutes());
+console.log(future.getTime()); //milliseconds since 1st Jan 1970 - Unix time
+
+console.log(future.toISOString());
+console.log(future.toLocaleString());
+
+console.log(Date.now()); //get current milliseconds
+
+// setters
+future.setFullYear(2040);
+console.log(future);
