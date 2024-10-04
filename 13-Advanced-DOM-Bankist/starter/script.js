@@ -167,3 +167,23 @@ btnScrollTo.addEventListener("click", function (e) {
   // new method - more modern
   section1.scrollIntoView({ behavior: "smooth" });
 });
+
+// remove event listeners
+const h1 = document.querySelector("h1");
+
+const alertH1 = function (e) {
+  // console.log(e);
+  alert(`Add event listener: Great! You are reading the heading!`);
+
+  // h1.removeEventListener("mouseenter", alertH1);
+};
+
+h1.addEventListener("mouseenter", alertH1);
+
+// remove event listener after 3 seconds
+setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000);
+// old school
+// h1.onmouseenter = function (e) {
+//   console.log(e);
+//   // alert(`Add event listener: Great! You are reading the heading!`);
+// };
