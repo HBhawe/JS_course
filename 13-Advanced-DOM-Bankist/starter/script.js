@@ -55,6 +55,7 @@ console.log(document.getElementsByClassName("btn"));
 
 // .insertAdjacentHTML
 
+/*
 const header = document.querySelector(".header");
 
 const message = document.createElement("div");
@@ -135,3 +136,34 @@ logo.classList.contains("c");
 // don't use - overwrites all existing class
 // logo.className = "jonas";
 // use classList.add instead
+*/
+
+// SMOOTH SCROLLING
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+btnScrollTo.addEventListener("click", function (e) {
+  // 1. old method
+  // const s1coords = section1.getBoundingClientRect();
+  // console.log(`s1 coords:`);
+  // console.log(s1coords);
+  // console.log(e.target.getBoundingClientRect(0));
+
+  // console.log(`Current scroll (X/Y)`, window.pageXOffset, window.pageYOffset);
+  // console.log(
+  //   "height/width",
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientWidth
+  // );
+
+  // // scrolling
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: "smooth",
+  // });
+
+  // new method - more modern
+  section1.scrollIntoView({ behavior: "smooth" });
+});
