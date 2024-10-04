@@ -169,6 +169,7 @@ btnScrollTo.addEventListener("click", function (e) {
 });
 
 // remove event listeners
+/*
 const h1 = document.querySelector("h1");
 
 const alertH1 = function (e) {
@@ -187,3 +188,41 @@ setTimeout(() => h1.removeEventListener("mouseenter", alertH1), 3000);
 //   console.log(e);
 //   // alert(`Add event listener: Great! You are reading the heading!`);
 // };
+*/
+
+// BUBBLING
+
+// random colour rgb(255,255,255)
+
+const randomInt = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const randomColour = () =>
+  `rgb(${randomInt(0, 255)},${randomInt(0, 255)}, ${randomInt(0, 255)})`;
+
+// EVENT BUBBLING
+// the lowest level element will also trigger events in all the parents
+document.querySelector(".nav__link").addEventListener("click", function (e) {
+  this.style.backgroundColor = randomColour();
+  console.log(`LINK`, e.target, e.currentTarget);
+  console.log(e.currentTarget === this);
+
+  // stop propagation - won't bubble up through all the parents
+  // not advisable
+  // e.stopPropagation();
+});
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  this.style.backgroundColor = randomColour();
+  console.log(`CONTAINER`, e.target, e.currentTarget);
+});
+
+// the 3rd parameter of the event listener changes whether the event is "captured" or "bubbled"
+document.querySelector(".nav").addEventListener(
+  "click",
+  function (e) {
+    this.style.backgroundColor = randomColour();
+    console.log(`NAV`, e.target, e.currentTarget);
+  },
+  true
+);
