@@ -265,3 +265,41 @@ document.querySelector(".nav").addEventListener(
 */
 
 // EVENT DELEGATION
+
+// DOM TRAVERSING
+
+const h1 = document.querySelector("h1");
+
+// going downwards: child
+console.log(h1.querySelectorAll(".highlight"));
+
+console.log(h1.childNodes);
+console.log(h1.children);
+console.log(h1.firstElementChild);
+
+h1.firstElementChild.style.color = "white";
+h1.lastElementChild.style.color = "orangered";
+
+// going upward :parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+// selects the closest header and sets the background to the CSS variable
+h1.closest(".header").style.background = "var(--gradient-secondary)";
+
+// if there is no closest h1, it selects itself
+h1.closest("h1").style.background = "var(--gradient-primary)";
+
+// going sideways - siblings
+console.log(h1.previousElementSibling); // will return null as it is the 1st child
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+console.log(h1.parentElement.children);
+
+// strange way of doing it
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) el.style.transform = "scale(0.5)";
+});
