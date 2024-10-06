@@ -92,6 +92,32 @@ navContainer.addEventListener("click", function (e) {
   }
 });
 
+// tabbed componenet
+
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
+
+// tabs.forEach((t) => t.addEventListener("click", console.log(`TAB`)));
+
+// EVENT DELEGATION
+tabsContainer.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  // matching strategy
+  const clicked = e.target.closest(".operations__tab");
+
+  if (!clicked) return; //guard clause - return if null
+  tabs.forEach((t) => t.classList.remove("operations__tab--active")); // remove the active class from all of them
+  tabsContent.forEach((t) => t.classList.remove("operations__content--active")); // remove the active class from all of them
+
+  // activate content area
+  clicked.classList.add("operations__tab--active");
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add("operations__content--active");
+});
+
 ///////////////////////////////////////
 ///////////////////////////////////////
 ///////////////////////////////////////
