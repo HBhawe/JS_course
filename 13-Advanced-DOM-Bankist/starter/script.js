@@ -8,6 +8,10 @@ const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 const btnScrollTo = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--1");
 
+const nav = document.querySelector(".nav");
+const navBtns = document.querySelectorAll(".nav__link");
+const navContainer = document.querySelector(".nav__links");
+
 ///////////////////////////////////////
 // Modal window
 
@@ -65,8 +69,6 @@ btnScrollTo.addEventListener("click", function (e) {
 
 // PAGE NAVIGATION
 // navigates to the section based on ID of html element
-const navBtns = document.querySelectorAll(".nav__link");
-const navContainer = document.querySelector(".nav__links");
 
 // this is really inefficient as the function gets added to all 3 elements
 // navBtns.forEach(function (el) {
@@ -117,6 +119,25 @@ tabsContainer.addEventListener("click", function (e) {
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add("operations__content--active");
 });
+
+// nav menu fade animation
+
+const handleHover = function (e) {
+  if (e.target.classList.contains("nav__link")) {
+    const link = e.target;
+    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+    const logo = link.closest(".nav").querySelector("img");
+
+    siblings.forEach((el) => {
+      if (el != link) el.style.opacity = this;
+      logo.style.opacity = this;
+    });
+  }
+};
+
+// passing an "argument" into handler
+nav.addEventListener("mouseover", handleHover.bind(0.5));
+nav.addEventListener("mouseout", handleHover.bind(1));
 
 ///////////////////////////////////////
 ///////////////////////////////////////
