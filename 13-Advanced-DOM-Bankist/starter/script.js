@@ -545,14 +545,14 @@ console.log(h1.parentElement.children);
 
 // fires after HTML is parsed and all JS is downloaded and executed
 // does not wait for images and external resources are parsed
-document.addEventListener("DOMContentLoaded", function (e) {
-  console.log(e);
-});
+// document.addEventListener("DOMContentLoaded", function (e) {
+//   console.log(e);
+// });
 
 // LOAD event
-window.addEventListener("load", function (e) {
-  console.log(`page loaded`, e);
-});
+// window.addEventListener("load", function (e) {
+//   console.log(`page loaded`, e);
+// });
 
 // UNLOAD event
 // fires before the page is left
