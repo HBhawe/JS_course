@@ -276,6 +276,19 @@ btnRight.addEventListener("click", nextSlide);
 
 btnLeft.addEventListener("click", prevSlide);
 
+// key navigation
+window.addEventListener("keydown", function (e) {
+  const key = e.key;
+  console.log(key);
+  if (key === "ArrowRight") {
+    console.log(`Right arrow`);
+    nextSlide;
+  } else if (key === "ArrowLeft") {
+    console.log(`Left arrow`);
+    prevSlide;
+  }
+});
+
 ///////////////////////////////////////
 ///////////////////////////////////////
 ///////////////////////////////////////
