@@ -540,3 +540,25 @@ console.log(h1.parentElement.children);
   if (el !== h1) el.style.transform = "scale(0.5)";
 });
 */
+
+// DOM EVENTS
+
+// fires after HTML is parsed and all JS is downloaded and executed
+// does not wait for images and external resources are parsed
+document.addEventListener("DOMContentLoaded", function (e) {
+  console.log(e);
+});
+
+// LOAD event
+window.addEventListener("load", function (e) {
+  console.log(`page loaded`, e);
+});
+
+// UNLOAD event
+// fires before the page is left
+// NOT ADVISABLE
+// window.addEventListener("beforeunload", function (e) {
+//   e.preventDefault(0);
+//   console.log(`Before unload event`, e);
+//   e.returnValue = "";
+// });
