@@ -26,3 +26,11 @@ const jack = new Person("Jack", 1975);
 
 // checking if a created object is an instance of person
 console.log(harshal instanceof Person);
+
+// PROTOTYPES
+Person.prototype.calcAge = function () {
+  const age = new Date().getFullYear() - this.birthYear;
+  return age;
+};
+
+console.log(Person.prototype);
