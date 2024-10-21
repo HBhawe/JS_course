@@ -25,12 +25,26 @@ const matilda = new Person("Matilda", 2007);
 const jack = new Person("Jack", 1975);
 
 // checking if a created object is an instance of person
-console.log(harshal instanceof Person);
+// console.log(harshal instanceof Person);
 
 // PROTOTYPES
 Person.prototype.calcAge = function () {
   const age = new Date().getFullYear() - this.birthYear;
-  return age;
+  this.age = age;
 };
 
-console.log(Person.prototype);
+// console.log(Person.prototype);
+
+harshal.calcAge();
+jack.calcAge();
+matilda.calcAge();
+
+console.log(harshal, jack, matilda);
+
+// prototypal inheritance
+Person.prototype.species = "Homo sapiens sapiens";
+
+console.log(harshal.species, jack.species, matilda.species);
+
+console.log(harshal.hasOwnProperty("firstName"));
+console.log(harshal.hasOwnProperty("species")); //returns false as it gets it through prototypal inheritance
