@@ -48,3 +48,25 @@ console.log(harshal.species, jack.species, matilda.species);
 
 console.log(harshal.hasOwnProperty("firstName"));
 console.log(harshal.hasOwnProperty("species")); //returns false as it gets it through prototypal inheritance
+
+console.log(harshal.__proto__);
+console.log(harshal.__proto__.__proto__);
+console.log(harshal.__proto__.__proto__.__proto__); //  returns null as it Object.prototype is already part of the top level
+
+console.dir(Person.prototype.constructor);
+
+const arr = [3, 56, 7, 2, 56, 7];
+console.log(arr.__proto__);
+console.log(arr.__proto__ === Array.prototype); //  returns true
+
+console.log(arr.__proto__.__proto__); //  returns object prototype
+
+// EXTENDING PROTOTYPES IS NOT A GOOD IDEA
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+
+console.log(arr.unique());
+
+const h1 = document.querySelector("h1");
+console.dir((x) => x + 1); //function to object prototype
