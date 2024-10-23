@@ -89,6 +89,7 @@ const h1 = document.querySelector("h1");
  * function.
  */
 
+/*
 const Car = function (make, speed) {
   this.make = make;
   this.speed = speed;
@@ -115,6 +116,7 @@ const mercedes = new Car("Mercedes", 95);
 mercedes.accelerate();
 mercedes.brake();
 // console.log(mercedes);
+*/
 
 // ES6 CLASSES
 
@@ -123,7 +125,7 @@ mercedes.brake();
 
 // class declaration
 // class PersonCl {}
-/*
+
 const PersonCl = class {
   constructor(fullName, birthYear) {
     this.fullName = fullName;
@@ -160,24 +162,26 @@ const PersonCl = class {
   }
 };
 
+/*
 const jessica = new PersonCl("Jessica Davis", 1996);
 // console.log(jessica);
 
 jessica.calcAge();
 console.log(jessica.personAge);
 console.log(jessica);
+*/
 
 // MANUALLY adding a method
 // PersonCl.prototype.greet = function () {
 //   console.log(`Hey, my name is ${this.fullName}. I am ${this.age} years old`);
 // };
 
+/*
 jessica.greet();
 
 const walter = new PersonCl("Walter White", 1965);
 PersonCl.hey();
 */
-
 // CLASS RULES
 // 1. Classes are not hoisted
 // 2. Classes are first-class citizens
@@ -309,7 +313,7 @@ Student.prototype.constructor = Student;
 */
 
 // CODING CHALLENGE 3
-
+/*
 const EV = function (make, speed, charge) {
   Car.call(this, make, speed);
   this.charge = charge;
@@ -339,3 +343,31 @@ tesla.brake();
 // tesla.chargeBattery(90);
 console.log(tesla);
 tesla.accelerate();
+*/
+
+// ES6 CLASS INHERITANCE
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    // ALWAYS NEEDS TO HAPPEN FIRST
+    super(fullName, birthYear); //calls the super function class
+    this.course = course;
+  }
+
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+
+  // overwrites parent class inheritance
+  calcAge() {
+    console.log(
+      `I am ${2037 - this.birthYear} years old, but as a student I feel like ${
+        2037 - this.birthYear + 10
+      }`
+    );
+  }
+}
+
+const martha = new StudentCl("Martha Jones", 2012, "Computer Science");
+martha.introduce();
+martha.calcAge();
+console.log(martha);
