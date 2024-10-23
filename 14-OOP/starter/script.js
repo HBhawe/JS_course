@@ -241,7 +241,6 @@ sarah.calcAge();
 console.log(sarah);
 */
 
-/*
 // CODING CHALLENGE 2
 
 const carCl = class {
@@ -258,6 +257,7 @@ const carCl = class {
   brake() {
     this.speed -= 5;
     console.log(`${this.make} is going at ${this.speed}km/h`);
+    return this;
   }
 
   get speedUS() {
@@ -269,6 +269,7 @@ const carCl = class {
   }
 };
 
+/*
 const ford = new carCl("Ford", 120);
 console.log(ford);
 console.log(ford.speedUS);
@@ -491,6 +492,56 @@ console.log(acc1);
 
 // CHAINING
 // all the methods needs to have a returned value - so we return "this"
-acc1.deposit(300).deposit(100).withdraw(35).requestLoan(2500).withdraw(4000);
-console.log(acc1);
-console.log(acc1.getMovements());
+// acc1.deposit(300).deposit(100).withdraw(35).requestLoan(2500).withdraw(4000);
+// console.log(acc1);
+// console.log(acc1.getMovements());
+
+class EVCl extends carCl {
+  #charge;
+  constructor(make, speed, charge) {
+    super(make, speed);
+    this.#charge = charge;
+  }
+
+  accelerate() {
+    this.speed += 20;
+    this.#charge -= 1;
+    console.log(
+      `${this.make} is going at ${this.speed}km/h, with a charge of ${
+        this.#charge
+      }%`
+    );
+    return this;
+  }
+
+  // brake() {
+  //   this.speed -= 5;
+  //   console.log(
+  //     `${this.make} is going at ${this.speed}km/h, with a charge of ${
+  //       this.#charge
+  //     }%`
+  //   );
+  //   return this;
+  // }
+
+  chargeBattery(chargeTo) {
+    this.#charge = chargeTo;
+    return this;
+  }
+}
+
+const rivian = new EVCl("Rivian", 120, 23);
+console.log(rivian);
+// rivian.accelerate();
+// rivian.chargeBattery(90);
+// console.log(rivian);
+rivian
+  .chargeBattery(90)
+  .accelerate()
+  .accelerate()
+  .brake()
+  .brake()
+  .brake()
+  .accelerate();
+
+console.log(rivian.speedUS);
