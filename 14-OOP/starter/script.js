@@ -81,6 +81,7 @@ const h1 = document.querySelector("h1");
  * function.
  */
 
+/*
 const Car = function (make, speed) {
   this.make = make;
   this.speed = speed;
@@ -107,3 +108,49 @@ const mercedes = new Car("Mercedes", 95);
 mercedes.accelerate();
 mercedes.brake();
 // console.log(mercedes);
+*/
+
+// ES6 CLASSES
+
+// class expression
+// const PersonCl = class{}
+
+// class declaration
+// class PersonCl {}
+
+const PersonCl = class {
+  constructor(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  }
+
+  // METHODS will be added to the prototype of the PersonCl class
+  calcAge() {
+    let age = new Date().getFullYear() - this.birthYear;
+    this.age = age;
+  }
+
+  greet() {
+    console.log(
+      `Hey, my name is ${this.firstName}. I am ${this.age} years old`
+    );
+  }
+};
+
+const jessica = new PersonCl("Jessica", 1996);
+console.log(jessica);
+
+jessica.calcAge();
+console.log(jessica);
+
+// MANUALLY adding a method
+// PersonCl.prototype.greet = function () {
+//   console.log(`Hey, my name is ${this.firstName}. I am ${this.age} years old`);
+// };
+
+jessica.greet();
+
+// CLASS RULES
+// 1. Classes are not hoisted
+// 2. Classes are first-class citizens
+// 3. Classes are auto executed in strict mode
