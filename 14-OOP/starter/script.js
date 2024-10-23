@@ -308,6 +308,8 @@ console.log(mike);
 Student.prototype.constructor = Student;
 */
 
+// CODING CHALLENGE 3
+
 const EV = function (make, speed, charge) {
   Car.call(this, make, speed);
   this.charge = charge;
