@@ -399,35 +399,67 @@ jay.calcAge();
 // console.log(jay);
 */
 
+// ACTUAL CLASS
+
+// PUBLIC FIELDS
+// PRIVATE FIELDS
+// PUBLIC METHODS
+// PRIVATE METHODS
+// static version of all these exist
+
 class Account {
+  //  1. public fields (instances)
+  locale = navigator.language;
+
+  //  2. private fields
+  #movements = [];
+  #pin;
+
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
-    this.movements = [];
-    this.locale = navigator.language;
+
+    // protected property - the underscore "_" is only a convention
+    this.#pin = pin;
+    // this.#movements = [];
+
+    // this.locale = navigator.language;
     console.log(`Thanks for opening an account ${this.owner}`);
   }
 
   // PUBLIC INTERFACE
   // API
+
+  //  3. PUBLIC METHODS
+
+  getMovements() {
+    return this.#movements;
+  }
+
   deposit(val) {
-    this.movements.push(val);
+    this.#movements.push(val);
   }
 
   withdraw(val) {
     this.deposit(-val);
   }
 
-  approveLoan(val) {
-    return true;
-  }
-
   requestLoan(val) {
-    if (this.approveLoan(val)) {
+    if (this.#approveLoan(val)) {
       this.deposit(val);
       console.log(`Loan appoved`);
     }
+  }
+
+  //  4. PRIVATE METHODS
+  // PROTECTED METHOD
+  #approveLoan(val) {
+    return true;
+  }
+
+  // static methods
+  static helper() {
+    console.log(`helper`);
   }
 }
 
@@ -442,6 +474,10 @@ console.log(acc1);
 acc1.deposit(250);
 acc1.withdraw(140);
 acc1.requestLoan(1000);
-acc1.approveLoan(1000);
+// acc1.approveLoan(1000); // this won't work anymore
+console.log(acc1.getMovements());
 
 console.log(acc1);
+
+// cannot be accessed here
+// console.log(acc1.#movements);
