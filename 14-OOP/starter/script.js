@@ -213,7 +213,8 @@ console.log(account.movements);
 */
 
 // OBJECT.CREATE
-/*
+/* The `personProto` object is being used to create a prototype for creating new person objects. It
+contains two methods: */
 const personProto = {
   calcAge() {
     console.log(2037 - this.birthYear);
@@ -224,6 +225,7 @@ const personProto = {
   },
 };
 
+/*
 const steven = Object.create(personProto);
 console.log(steven);
 
@@ -345,6 +347,7 @@ console.log(tesla);
 tesla.accelerate();
 */
 
+/*
 // ES6 CLASS INHERITANCE
 class StudentCl extends PersonCl {
   constructor(fullName, birthYear, course) {
@@ -371,3 +374,25 @@ const martha = new StudentCl("Martha Jones", 2012, "Computer Science");
 martha.introduce();
 martha.calcAge();
 console.log(martha);
+*/
+
+// INHERITANCE using object.create
+const StudentProto = Object.create(personProto);
+
+StudentProto.init = function (firstName, birthYear, course) {
+  personProto.init.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+StudentProto.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const jay = Object.create(StudentProto);
+console.log(jay);
+jay.init("Jay", 2007, "Computer Science");
+jay.introduce();
+jay.calcAge();
+
+// jay.init("Jay", 2007);
+// console.log(jay);
