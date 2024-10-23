@@ -438,10 +438,12 @@ class Account {
 
   deposit(val) {
     this.#movements.push(val);
+    return this;
   }
 
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
 
   requestLoan(val) {
@@ -449,6 +451,7 @@ class Account {
       this.deposit(val);
       console.log(`Loan appoved`);
     }
+    return this;
   }
 
   //  4. PRIVATE METHODS
@@ -464,6 +467,7 @@ class Account {
 }
 
 const acc1 = new Account("Harshal", "INR", 1111);
+/*
 console.log(acc1);
 
 // NOT RECOMMENDED
@@ -481,3 +485,12 @@ console.log(acc1);
 
 // cannot be accessed here
 // console.log(acc1.#movements);
+*/
+
+// Account.helper();
+
+// CHAINING
+// all the methods needs to have a returned value - so we return "this"
+acc1.deposit(300).deposit(100).withdraw(35).requestLoan(2500).withdraw(4000);
+console.log(acc1);
+console.log(acc1.getMovements());
