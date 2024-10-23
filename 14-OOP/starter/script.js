@@ -211,6 +211,7 @@ console.log(account.movements);
 */
 
 // OBJECT.CREATE
+/*
 const personProto = {
   calcAge() {
     console.log(2037 - this.birthYear);
@@ -234,7 +235,9 @@ const sarah = Object.create(personProto);
 sarah.init("Sarah", 2012);
 sarah.calcAge();
 console.log(sarah);
+*/
 
+/*
 // CODING CHALLENGE 2
 
 const carCl = class {
@@ -271,3 +274,37 @@ ford.accelerate();
 ford.brake();
 ford.accelerate();
 console.log(ford);
+*/
+
+//  INHERITANCE BETWEEN CLASSES
+
+// console.log(Person.prototype);
+
+const Student = function (firstName, birthYear, course) {
+  // this is the "NORMAL" way of doing a new class
+  // this.firstName = firstName;
+  // this.birthYear = birthYear;
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+
+// THIS CONNECTION NEEDS TO BE MADE BEFORE ADDING METHODS TO THE STUDENT "CLASS"
+Student.prototype = Object.create(Person.prototype);
+
+// add the introduce method
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+
+const mike = new Student("Mike", 2020, "Computer Science");
+// console.log(mike);
+mike.introduce();
+console.log(Student);
+
+// this will work as the Person prototype is set using line 292
+// calcAge and species are prototypes of the Person
+mike.calcAge();
+console.log(mike.species);
+console.log(mike);
+
+Student.prototype.constructor = Student;
