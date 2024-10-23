@@ -1,8 +1,8 @@
 "use strict";
 
-const Person = function (fullName, birthYear) {
+const Person = function (firstName, birthYear) {
   // instance properties
-  this.fullName = fullName;
+  this.firstName = firstName;
   this.birthYear = birthYear;
 
   //   never create a method inside a constructor function
@@ -26,6 +26,14 @@ const jack = new Person("Jack", 1975);
 
 // checking if a created object is an instance of person
 // console.log(harshal instanceof Person);
+
+// static function
+Person.hey = function () {
+  console.log(`Hey there!`);
+};
+
+// not inherited by objects created by the person object
+// Person.hey();
 
 // PROTOTYPES
 Person.prototype.calcAge = function () {
@@ -117,7 +125,7 @@ mercedes.brake();
 
 // class declaration
 // class PersonCl {}
-
+/*
 const PersonCl = class {
   constructor(fullName, birthYear) {
     this.fullName = fullName;
@@ -147,6 +155,11 @@ const PersonCl = class {
   get fullName() {
     return this._fullName;
   }
+
+  // STATIC METHOD
+  static hey() {
+    console.log(`Hey there!`);
+  }
 };
 
 const jessica = new PersonCl("Jessica Davis", 1996);
@@ -164,12 +177,14 @@ console.log(jessica);
 jessica.greet();
 
 const walter = new PersonCl("Walter White", 1965);
+PersonCl.hey();
+*/
 
 // CLASS RULES
 // 1. Classes are not hoisted
 // 2. Classes are first-class citizens
 // 3. Classes are auto executed in strict mode
-
+/*
 // SETTERS AND GETTERS
 
 const account = {
@@ -193,3 +208,64 @@ console.log(account.latest);
 // setters
 account.latest = 50;
 console.log(account.movements);
+*/
+
+// OBJECT.CREATE
+const personProto = {
+  calcAge() {
+    console.log(2037 - this.birthYear);
+  },
+  init(firstName, birthYear) {
+    this.firstName = firstName;
+    this.birthYear = birthYear;
+  },
+};
+
+const steven = Object.create(personProto);
+console.log(steven);
+
+steven.name = "Steven";
+steven.birthYear = 2002;
+console.log(steven);
+
+steven.calcAge();
+
+const sarah = Object.create(personProto);
+sarah.init("Sarah", 2012);
+sarah.calcAge();
+console.log(sarah);
+
+// CODING CHALLENGE 2
+
+const carCl = class {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  accelerate() {
+    this.speed += 10;
+  }
+
+  brake() {
+    this.speed -= 5;
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+};
+
+const ford = new carCl("Ford", 120);
+console.log(ford);
+console.log(ford.speedUS);
+ford.speedUS = 150;
+console.log(ford);
+ford.accelerate();
+ford.brake();
+ford.accelerate();
+console.log(ford);
