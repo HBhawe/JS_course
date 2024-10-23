@@ -1,8 +1,8 @@
 "use strict";
 
-const Person = function (firstName, birthYear) {
+const Person = function (fullName, birthYear) {
   // instance properties
-  this.firstName = firstName;
+  this.fullName = fullName;
   this.birthYear = birthYear;
 
   //   never create a method inside a constructor function
@@ -46,7 +46,7 @@ Person.prototype.species = "Homo sapiens sapiens";
 
 // console.log(harshal.species, jack.species, matilda.species);
 
-// console.log(harshal.hasOwnProperty("firstName"));
+// console.log(harshal.hasOwnProperty("fullName"));
 // console.log(harshal.hasOwnProperty("species")); //returns false as it gets it through prototypal inheritance
 
 // console.log(harshal.__proto__);
@@ -119,8 +119,8 @@ mercedes.brake();
 // class PersonCl {}
 
 const PersonCl = class {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
     this.birthYear = birthYear;
   }
 
@@ -131,26 +131,65 @@ const PersonCl = class {
   }
 
   greet() {
-    console.log(
-      `Hey, my name is ${this.firstName}. I am ${this.age} years old`
-    );
+    console.log(`Hey, my name is ${this.fullName}. I am ${this.age} years old`);
+  }
+
+  get personAge() {
+    return this.age;
+  }
+
+  // this method is executed whenever we set the this.fullName method
+  set fullName(name) {
+    if (name.includes(" ")) this._fullName = name;
+    else alert(`The given name is not a full name`);
+  }
+
+  get fullName() {
+    return this._fullName;
   }
 };
 
-const jessica = new PersonCl("Jessica", 1996);
-console.log(jessica);
+const jessica = new PersonCl("Jessica Davis", 1996);
+// console.log(jessica);
 
 jessica.calcAge();
+console.log(jessica.personAge);
 console.log(jessica);
 
 // MANUALLY adding a method
 // PersonCl.prototype.greet = function () {
-//   console.log(`Hey, my name is ${this.firstName}. I am ${this.age} years old`);
+//   console.log(`Hey, my name is ${this.fullName}. I am ${this.age} years old`);
 // };
 
 jessica.greet();
+
+const walter = new PersonCl("Walter White", 1965);
 
 // CLASS RULES
 // 1. Classes are not hoisted
 // 2. Classes are first-class citizens
 // 3. Classes are auto executed in strict mode
+
+// SETTERS AND GETTERS
+
+const account = {
+  owner: "jonas",
+  movements: [200, 500, 120, 300],
+
+  // GETTER
+  get latest() {
+    return this.movements.slice(-1).pop();
+  },
+
+  // SETTER
+  set latest(mov) {
+    this.movements.push(mov);
+  },
+};
+
+// we do not call the getter as a method
+console.log(account.latest);
+
+// setters
+account.latest = 50;
+console.log(account.movements);
