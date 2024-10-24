@@ -1,3 +1,6 @@
+/* The code defines classes for workouts, running, and cycling activities, implements a map-based
+workout tracking application with geolocation and local storage functionality, and provides methods
+for adding, rendering, and interacting with workout data. */
 "use strict";
 
 // WORKOUT CLASS
