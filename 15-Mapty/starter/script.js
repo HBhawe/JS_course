@@ -20,20 +20,41 @@ if (navigator.geolocation) {
       const { latitude } = position.coords;
       const { longitude } = position.coords;
 
-      console.log(latitude, longitude);
-      console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
+      //   console.log(latitude, longitude);
+      //   console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
       const coords = [latitude, longitude];
 
       //   the L.map should match an ID in the HTML
       const map = L.map("map").setView(coords, 13);
+      //   console.log(map);
 
       L.tileLayer("https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
         attribution:
           '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(map);
 
-      L.marker(coords).addTo(map).bindPopup("This is your current location");
-      // .openPopup();
+      //   L.marker(coords)
+      //     .addTo(map)
+      //     .bindPopup("This is your current location")
+      //     .openPopup();
+
+      //   marking a click event on the map with a marker
+      map.on("click", function (mapEvent) {
+        const { lat, lng } = mapEvent.latlng;
+        L.marker([lat, lng])
+          .addTo(map)
+          .bindPopup(
+            L.popup({
+              autoClose: false,
+              maxWidth: 250,
+              minWidth: 100,
+              closeOnClick: false,
+              className: "running-popup",
+            })
+          )
+          .setPopupContent(`Workout`)
+          .openPopup();
+      });
     },
     function () {
       alert("Could not get your position");
