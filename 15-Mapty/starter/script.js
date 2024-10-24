@@ -19,8 +19,6 @@ if (navigator.geolocation) {
     function (position) {
       const { latitude } = position.coords;
       const { longitude } = position.coords;
-
-      //   console.log(`https://www.google.com/maps/@${latitude},${longitude}`);
       const coords = [latitude, longitude];
 
       //   the L.map should match an ID in the HTML
@@ -66,6 +64,7 @@ form.addEventListener("submit", function (e) {
     .openPopup();
 });
 
+// clearing input fields
 const clearInputFields = function () {
   inputDistance.value =
     inputDuration.value =
@@ -74,7 +73,7 @@ const clearInputFields = function () {
       "";
 };
 
-// event listener for input type change - bicycling vs running
+// event listener for input type change - cycle vs running
 inputType.addEventListener("change", function () {
   inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
   inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
