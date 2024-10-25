@@ -98,11 +98,41 @@ getCountryAndNeighbour("sweden");
 // };
 
 // simplified code with fetch and arrow function
+// this one is kind of like callback hell as many countries have multiple neighbours
+// const getCountryData = function (country) {
+//   let url = "https://restcountries.com/v3.1";
+//   const request = fetch(`${url}/name/${country}`)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       //   optional chaining to check whether there any neighbours
+//       const neighbours = data[0]?.borders;
+
+//       //   render neighbours
+//       if (neighbours) {
+//         neighbours.forEach((neighbour) => {
+//           let request2 = fetch(`${url}/alpha/${neighbour}`).then((response) =>
+//             response.json().then((data) => renderCountry(data[0], "neighbour"))
+//           );
+//         });
+//       }
+//     });
+// };
+
+// this is the "correct" code with the correct callbacks
 const getCountryData = function (country) {
   let url = "https://restcountries.com/v3.1";
   const request = fetch(`${url}/name/${country}`)
     .then((response) => response.json())
-    .then((data) => renderCountry(data[0]));
+    .then((data) => {
+      renderCountry(data[0]);
+      const neighbour = data[0].borders[0];
+      if (!neighbour) return;
+
+      return fetch(`${url}/alpha/${neighbour}`);
+    })
+    .then((response) => response.json())
+    .then((data) => renderCountry(data[0], "neighbour"));
 };
 
-getCountryData("sweden");
+getCountryData("finland");
