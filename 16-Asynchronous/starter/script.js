@@ -193,4 +193,4 @@ const getCountryData = function (country) {
     });
 };
 
-getCountryData("australia");
+// getCountryData("australia");
