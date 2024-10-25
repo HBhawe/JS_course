@@ -7,8 +7,7 @@ const btn = document.querySelector(".btn-country");
 const countriesContainer = document.querySelector(".countries");
 
 ///////////////////////////////////////
-const body = document.querySelector("body");
-
+/*
 const renderCountry = function (data, className = "") {
   const html = `
     <article class="country ${className}">
@@ -70,3 +69,16 @@ const getCountryAndNeighbour = function (country) {
 };
 
 getCountryAndNeighbour("sweden");
+*/
+
+// PROMISES
+let url = "https://restcountries.com/v3.1";
+// const request = new XMLHttpRequest();
+// request.open("GET", `${url}/name/${country}`);
+// request.send();
+
+const request = fetch(`${url}/name/sweden`);
+console.log(request);
+
+// testing
+// setTimeout(() => console.log(request), 2000);
