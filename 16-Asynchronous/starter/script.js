@@ -7,7 +7,7 @@ const btn = document.querySelector(".btn-country");
 const countriesContainer = document.querySelector(".countries");
 
 ///////////////////////////////////////
-/*
+
 const renderCountry = function (data, className = "") {
   const html = `
     <article class="country ${className}">
@@ -31,6 +31,7 @@ const renderCountry = function (data, className = "") {
   countriesContainer.style.opacity = 1;
 };
 
+/*
 const getCountryAndNeighbour = function (country) {
   let url = "https://restcountries.com/v3.1";
 
@@ -72,13 +73,36 @@ getCountryAndNeighbour("sweden");
 */
 
 // PROMISES
-let url = "https://restcountries.com/v3.1";
+// let url = "https://restcountries.com/v3.1";
 // const request = new XMLHttpRequest();
 // request.open("GET", `${url}/name/${country}`);
 // request.send();
 
-const request = fetch(`${url}/name/sweden`);
-console.log(request);
+// const request = fetch(`${url}/name/sweden`);
+// console.log(request);
 
 // testing
 // setTimeout(() => console.log(request), 2000);
+
+// FOR DEBUGGING
+// const getCountryData = function (country) {
+//   let url = "https://restcountries.com/v3.1";
+//   const request = fetch(`${url}/name/${country}`)
+//     .then(function (response) {
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       //   console.log(data[0]);
+//       renderCountry(data[0]);
+//     });
+// };
+
+// simplified code with fetch and arrow function
+const getCountryData = function (country) {
+  let url = "https://restcountries.com/v3.1";
+  const request = fetch(`${url}/name/${country}`)
+    .then((response) => response.json())
+    .then((data) => renderCountry(data[0]));
+};
+
+getCountryData("sweden");
