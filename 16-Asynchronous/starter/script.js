@@ -124,19 +124,65 @@ getCountryAndNeighbour("sweden");
 //     });
 // };
 
+const getJSON = function (url, errorMsg = "Something went wrong") {
+  return fetch(url).then((response) => {
+    if (!response.ok || response.status !== 200)
+      throw new Error(`${errorMsg} (${response.status})`);
+
+    return response.json();
+  });
+};
+
+// REFERENCE CODE FOR OLD ASYNC WITH NO ERROR HANDLING
 // this is the "correct" code with the correct callbacks
+// const getCountryData = function (country) {
+//   let url = "https://restcountries.com/v3.1";
+//   const request = fetch(`${url}/name/${country}`)
+//     .then((response) => {
+//       if (!response.ok || response.status !== 200)
+//         throw new Error(`Country not found (${response.status})`);
+
+//       return response.json();
+//     })
+//     .then((data) => {
+//       renderCountry(data[0]);
+//       const neighbour = data[0].borders[0];
+//       if (!neighbour) return;
+
+//       return fetch(`${url}/alpha/${neighbour}`);
+//     })
+//     .then((response) => {
+//       if (!response.ok || response.status !== 200)
+//         throw new Error(`Country not found (${response.status})`);
+//       return response.json();
+//     })
+//     .then((data) => renderCountry(data[0], "neighbour"))
+//     .catch((err) => {
+//       console.log(`${err} 💥💥💥`);
+//       renderError(`Something went wrong 💥💥💥 ${err.message}. Try again!`);
+//     })
+//     .finally(() => {
+//       countriesContainer.style.opacity = 1;
+//     });
+// };
+
+btn.addEventListener("click", function () {
+  getCountryData("sweden");
+});
+
+// getCountryData("sdsdsdd");
+
 const getCountryData = function (country) {
   let url = "https://restcountries.com/v3.1";
-  const request = fetch(`${url}/name/${country}`)
-    .then((response) => response.json())
+  getJSON(`${url}/name/${country}`, "Country not found")
     .then((data) => {
       renderCountry(data[0]);
-      const neighbour = data[0].borders[0];
-      if (!neighbour) return;
+      const neighbour = data[0]?.borders?.[0];
+      if (!neighbour) throw new Error("No neighbour found!");
 
-      return fetch(`${url}/alpha/${neighbour}`);
+      //   neighbour
+      return getJSON(`${url}/alpha/${neighbour}`, "Country not found");
     })
-    .then((response) => response.json())
     .then((data) => renderCountry(data[0], "neighbour"))
     .catch((err) => {
       console.log(`${err} 💥💥💥`);
@@ -147,8 +193,4 @@ const getCountryData = function (country) {
     });
 };
 
-btn.addEventListener("click", function () {
-  getCountryData("sweden");
-});
-
-getCountryData("sdsdsdd");
+getCountryData("australia");
