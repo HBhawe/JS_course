@@ -8,6 +8,11 @@ const countriesContainer = document.querySelector(".countries");
 
 ///////////////////////////////////////
 
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText("beforeend", msg);
+  //   countriesContainer.style.opacity = 1;
+};
+
 const renderCountry = function (data, className = "") {
   const html = `
     <article class="country ${className}">
@@ -28,7 +33,7 @@ const renderCountry = function (data, className = "") {
           </article>`;
 
   countriesContainer.insertAdjacentHTML("beforeend", html);
-  countriesContainer.style.opacity = 1;
+  //   countriesContainer.style.opacity = 1;
 };
 
 /*
@@ -132,7 +137,18 @@ const getCountryData = function (country) {
       return fetch(`${url}/alpha/${neighbour}`);
     })
     .then((response) => response.json())
-    .then((data) => renderCountry(data[0], "neighbour"));
+    .then((data) => renderCountry(data[0], "neighbour"))
+    .catch((err) => {
+      console.log(`${err} 💥💥💥`);
+      renderError(`Something went wrong 💥💥💥 ${err.message}. Try again!`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
 };
 
-getCountryData("finland");
+btn.addEventListener("click", function () {
+  getCountryData("sweden");
+});
+
+getCountryData("sdsdsdd");
