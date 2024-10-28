@@ -33,7 +33,7 @@ const renderCountry = function (data, className = "") {
           </article>`;
 
   countriesContainer.insertAdjacentHTML("beforeend", html);
-  //   countriesContainer.style.opacity = 1;
+  countriesContainer.style.opacity = 1;
 };
 
 /*
@@ -194,3 +194,31 @@ const getCountryData = function (country) {
 };
 
 // getCountryData("australia");
+
+// CODING CHALLENGE
+const whereAmI = function (lat, lng) {
+  let url = "https://geocode.xyz";
+  // let data;
+  fetch(`${url}/${lat},${lng}?json=1`)
+    .then((response) => {
+      if (!response.ok || response.status !== 200)
+        throw new Error(`Problem with Geocoding (${response.status})`);
+
+      return response.json();
+    })
+    .then((data) => {
+      console.log(`You are in ${data.city}, ${data.country}`);
+      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+    })
+    .then((res) => {
+      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+
+      return res.json();
+    })
+    .then((data) => renderCountry(data[0]))
+    .catch((err) => console.log(`${err.message}`));
+};
+
+whereAmI(52.508, 13.381); //  Berlin, Germany
+whereAmI(19.037, 72.873); //  Mumbai, India
+whereAmI(-33.933, 18.474); //  Cape Town, South Africa
