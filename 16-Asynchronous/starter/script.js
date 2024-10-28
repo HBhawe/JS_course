@@ -165,10 +165,11 @@ const getJSON = function (url, errorMsg = "Something went wrong") {
 //       countriesContainer.style.opacity = 1;
 //     });
 // };
-
+/*
 btn.addEventListener("click", function () {
   getCountryData("sweden");
 });
+*/
 
 // getCountryData("sdsdsdd");
 
@@ -294,4 +295,57 @@ wait(1)
 
 Promise.resolve(`You WIN abc`).then((x) => console.log(x));
 Promise.reject(new Error(`You LOSE abc`)).catch((x) => console.error(x));
+*/
+
+// navigator.geolocation.getCurrentPosition(
+//   (position) => console.log(position.coords),
+//   (err) => console.error(err)
+// );
+
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   (position) => resolve(position),
+    //   (err) => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+// getPosition()
+//   .then((res) => console.log(res))
+//   .catch((err) => console.error(err));
+
+// promisifying GeoLocation API()
+/*
+const whereAmI = function () {
+  let url = "https://geocode.xyz";
+  // let data;
+  getPosition()
+    .then((pos) => {
+      const { latitude: lat, longitude: lng } = pos.coords;
+      return fetch(`${url}/${lat},${lng}?json=1`);
+    })
+    .then((response) => {
+      if (!response.ok || response.status !== 200)
+        throw new Error(`Problem with Geocoding (${response.status})`);
+
+      return response.json();
+    })
+    .then((data) => {
+      console.log(`You are in ${data.city}, ${data.country}`);
+      return fetch(`https://restcountries.com/v3.1/name/${data.country}`);
+    })
+    .then((res) => {
+      if (!res.ok) throw new Error(`Country not found (${res.status})`);
+
+      return res.json();
+    })
+    .then((data) => renderCountry(data[0]))
+    .catch((err) => console.log(`${err.message}`));
+};
+
+btn.addEventListener("click", function () {
+  whereAmI();
+});
 */
