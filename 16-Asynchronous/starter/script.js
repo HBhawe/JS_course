@@ -345,6 +345,7 @@ btn.addEventListener("click", function () {
   whereAmI();
 });
 
+*/
 
 // CODING CHALLENGE 2
 const images = document.querySelector(".images");
@@ -373,7 +374,7 @@ const createImage = function (imgPath) {
 };
 
 let currentImg;
-
+/*
 createImage("img/img-1.jpg")
   .then((img) => {
     currentImg = img;
@@ -393,7 +394,7 @@ createImage("img/img-1.jpg")
     currentImg.style.display = "none";
   })
   .catch((err) => console.error(err));
-*/
+  */
 
 // ASYNC AWAIT AND TRY-CATCH
 /*
@@ -457,6 +458,7 @@ console.log(`1. will get location`);
 
 // this is slow as the code inside the function is still synchronous
 // refactored to use promises.all - concurrent promises
+/*
 const get3Countries = async function (c1, c2, c3) {
   try {
     // const [data1] = await getJSON(`https://restcountries.com/v3.1/name/${c1}`);
@@ -478,3 +480,122 @@ const get3Countries = async function (c1, c2, c3) {
 };
 
 get3Countries("portugal", "canada", "tanzania");
+
+
+// PROMISE.RACE
+// race function - value is the one that went through the fastest - included rejected promises
+(async function () {
+  const res = await Promise.race([
+    getJSON(`https://restcountries.com/v3.1/name/italy`),
+    getJSON(`https://restcountries.com/v3.1/name/spain`),
+    getJSON(`https://restcountries.com/v3.1/name/india`),
+  ]);
+  // console.log(res[0]);
+})();
+
+const timeout = function (sec) {
+  return new Promise(function (_, reject) {
+    setTimeout(() => {
+      reject(new Error(`request took too long`));
+    }, sec * 1000);
+  });
+};
+
+// racing against a timeout
+Promise.race([getJSON(`https://restcountries.com/v3.1/name/italy`), timeout(5)])
+  .then((res) => console.log(res[0]))
+  .catch((err) => console.error(err));
+
+// PROMISE.ALLSETTLED
+Promise.allSettled([
+  Promise.resolve("Success"),
+  Promise.reject("Error"),
+  Promise.resolve("Another success"),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
+
+Promise.all([
+  Promise.resolve("Success"),
+  Promise.reject("Error"),
+  Promise.resolve("Another success"),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
+
+// PROMISE.ANY [ES2021]- returns the 1st fulfilled promise
+Promise.any([
+  Promise.resolve("Success"),
+  Promise.reject("Error"),
+  Promise.resolve("Another success"),
+])
+  .then((res) => console.log(res))
+  .catch((err) => console.error(err));
+*/
+
+/*
+createImage("img/img-1.jpg")
+  .then((img) => {
+    currentImg = img;
+    console.log(`Image 1 loaded`);
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = "none";
+    return createImage("img/img-2.jpg");
+  })
+  .then((img) => {
+    currentImg = img;
+    console.log(`Image 2 loaded`);
+    return wait(2);
+  })
+  .then(() => {
+    currentImg.style.display = "none";
+  })
+  .catch((err) => console.error(err));
+*/
+
+// CODING CHALLENGE 3
+// let currentImg;
+const loadNPause = async function () {
+  try {
+    // load image 1
+    let img = await createImage("img/img-1.jpg");
+    console.log(`Image 1 loaded`);
+
+    await wait(2);
+    img.style.display = "none";
+
+    // image 2
+    img = await createImage("img/img-2.jpg");
+    console.log(`Image 2 loaded`);
+
+    await wait(2);
+    img.style.display = "none";
+
+    // image 3
+    img = await createImage("img/img-3.jpg");
+    console.log(`Image 3 loaded`);
+
+    await wait(2);
+    img.style.display = "none";
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// loadNPause();
+
+// part 2
+const loadAll = async function (imgArr) {
+  try {
+    const imgs = imgArr.map(async (img) => await createImage(img));
+
+    const imgsEl = await Promise.all(imgs);
+    imgsEl.forEach((img) => img.classList.add("parallel"));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+loadAll(["img/img-1.jpg", "img/img-2.jpg", "img/img-3.jpg"]);
