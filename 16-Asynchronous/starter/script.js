@@ -396,6 +396,7 @@ createImage("img/img-1.jpg")
 */
 
 // ASYNC AWAIT AND TRY-CATCH
+/*
 const whereAmI = async function () {
   try {
     // geolocaiton
@@ -448,7 +449,32 @@ console.log(`1. will get location`);
     const city = await whereAmI();
     console.log(`2: ${city}`);
   } catch (error) {
-    console.log(`2: ${err.message}`);
+    console.log(`2: ${error.message}`);
   }
   console.log(`3. finished getting location`);
 })();
+*/
+
+// this is slow as the code inside the function is still synchronous
+// refactored to use promises.all - concurrent promises
+const get3Countries = async function (c1, c2, c3) {
+  try {
+    // const [data1] = await getJSON(`https://restcountries.com/v3.1/name/${c1}`);
+    // const [data2] = await getJSON(`https://restcountries.com/v3.1/name/${c2}`);
+    // const [data3] = await getJSON(`https://restcountries.com/v3.1/name/${c3}`);
+
+    // concurrent promises
+    // short circuits on 1 promise
+    const data = await Promise.all([
+      getJSON(`https://restcountries.com/v3.1/name/${c1}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c2}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c3}`),
+    ]);
+    // console.log(data);
+    console.log(data.map((d) => d[0].capital));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+get3Countries("portugal", "canada", "tanzania");
