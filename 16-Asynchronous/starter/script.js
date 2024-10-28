@@ -304,10 +304,6 @@ Promise.reject(new Error(`You LOSE abc`)).catch((x) => console.error(x));
 
 const getPosition = function () {
   return new Promise(function (resolve, reject) {
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => resolve(position),
-    //   (err) => reject(err)
-    // );
     navigator.geolocation.getCurrentPosition(resolve, reject);
   });
 };
@@ -348,7 +344,7 @@ const whereAmI = function () {
 btn.addEventListener("click", function () {
   whereAmI();
 });
-*/
+
 
 // CODING CHALLENGE 2
 const images = document.querySelector(".images");
@@ -397,3 +393,25 @@ createImage("img/img-1.jpg")
     currentImg.style.display = "none";
   })
   .catch((err) => console.error(err));
+*/
+
+const whereAmI = async function () {
+  // geolocaiton
+  const pos = await getPosition();
+  const { latitude: lat, longitude: lng } = pos.coords;
+
+  // reverse geocoding
+  const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?json=1`);
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
+
+  // country data
+  const res = await fetch(
+    `https://restcountries.com/v3.1/name/${dataGeo.country}`
+  );
+  const data = await res.json();
+  renderCountry(data[0]);
+};
+
+whereAmI();
+console.log(`abc`);
