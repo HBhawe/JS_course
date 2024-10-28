@@ -224,3 +224,19 @@ const whereAmI = function (lat, lng) {
 // whereAmI(19.037, 72.873); //  Mumbai, India
 // whereAmI(-33.933, 18.474); //  Cape Town, South Africa
 */
+
+/*
+console.log(`test start`);
+
+setTimeout(() => console.log(`0 sec timer`), 0);
+
+Promise.resolve("Resolved promise 1").then((res) => console.log(res));
+
+// simulation that microtasks are always run first (before normal callbacks)
+Promise.resolve("Resolved promise 2").then((res) => {
+  for (let i = 0; i < 10000000000; i++) {}
+  console.log(res);
+});
+
+console.log(`test end`);
+*/
