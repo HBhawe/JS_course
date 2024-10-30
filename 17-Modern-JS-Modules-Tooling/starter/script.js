@@ -1,20 +1,23 @@
 // importing module
-// import {
-//   addToCart,
-//   totalPrice as price,
-//   totalQuantity,
-// } from "./shoppingCart.js";
-// addToCart(`abcd`, 10);
-// console.log(price, totalQuantity);
+import {
+  addToCart,
+  totalPrice as price,
+  totalQuantity,
+} from "./shoppingCart.js";
+addToCart(`abcd`, 10);
+console.log(price, totalQuantity);
 
-// import * as ShoppingCart from "./shoppingCart.js";
-// console.log(ShoppingCart, ShoppingCart.totalPrice);
-// ShoppingCart.addToCart("bread", 5);
+import * as ShoppingCart from "./shoppingCart.js";
+console.log(ShoppingCart, ShoppingCart.totalPrice);
+ShoppingCart.addToCart("bread", 5);
 
 // default import
-/*
 import add, { cart } from "./shoppingCart.js";
 add("pizza", 2);
+add("bread", 5);
+add("apples", 4);
+
+console.log(cart);
 
 // top level await
 // for modules - await works OUTSIDE async functions
@@ -26,6 +29,7 @@ add("pizza", 2);
 // console.log(data);
 // console.log("something");
 
+/*
 const getLastPost = async function () {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts");
   const data = await res.json();
@@ -91,7 +95,6 @@ console.log(ShoppingCart2.shippingCost);
 // import - require won't work either
 // const { addToCart } = require("./shoppingCart.js");
 
-/*
 import cloneDeep from "./node_modules/lodash-es/cloneDeep.js";
 
 const state = {
@@ -108,4 +111,3 @@ state.user.loggedIn = false;
 console.log(stateClone);
 
 console.log(stateDeepClone);
-*/
