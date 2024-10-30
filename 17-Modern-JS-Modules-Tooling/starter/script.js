@@ -46,6 +46,7 @@ const lastPost2 = await getLastPost();
 console.log(lastPost2);
 */
 
+/*
 // this works because of closures
 const ShoppingCart2 = (function () {
   const cart = [];
@@ -77,3 +78,15 @@ console.log(ShoppingCart2);
 
 // cannot access this in the space
 console.log(ShoppingCart2.shippingCost);
+*/
+
+// COMMON JS MODULES
+
+// won't work in the browser
+// export.addToCart = function (product, quantity) {
+//   cart.push({ product, quantity });
+//   console.log(`${quantity} ${product} added to cart`);
+// };
+
+// import - require won't work either
+// const { addToCart } = require("./shoppingCart.js");
