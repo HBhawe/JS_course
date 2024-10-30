@@ -1,4 +1,9 @@
 // importing module
+import "core-js/actual";
+
+// polyfilling async functions
+import "regenerator-runtime/runtime.js";
+
 import {
   addToCart,
   totalPrice as price,
@@ -117,3 +122,17 @@ console.log(stateDeepClone);
 if (module.hot) {
   module.hot.accept();
 }
+
+class Person {
+  greeting = "hey";
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.greeting}, ${this.name}`);
+  }
+}
+
+const harshal = new Person("harshal");
+
+console.log(cart.find((el) => el.quantity >= 2));
+
+Promise.resolve("TEST").then((x) => console.log(x));

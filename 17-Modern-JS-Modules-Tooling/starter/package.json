@@ -1,18 +1,22 @@
 {
   "name": "starter",
+  "browserslist": "last 2 versions, > 0.5% and ie >= 11",
   "version": "1.0.0",
+  "description": "",
   "scripts": {
-    "start": "parcel index.html",
+    "start": "parcel --target default index.html",
     "build": "parcel build index.html"
   },
-  "author": "Harshal",
+  "author": "Jonas",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "leaflet": "^1.9.4",
-    "lodash-es": "^4.17.21"
+    "core-js": "^3.33.2",
+    "leaflet": "^1.6.0",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.15",
+    "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {
-    "parcel": "^2.12.0"
+    "parcel": "^2.9.3"
   }
 }
