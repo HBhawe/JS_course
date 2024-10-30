@@ -46,6 +46,7 @@ const lastPost2 = await getLastPost();
 console.log(lastPost2);
 */
 
+// this works because of closures
 const ShoppingCart2 = (function () {
   const cart = [];
   const shippingCost = 10;
