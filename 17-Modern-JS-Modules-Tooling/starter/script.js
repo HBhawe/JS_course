@@ -91,6 +91,7 @@ console.log(ShoppingCart2.shippingCost);
 // import - require won't work either
 // const { addToCart } = require("./shoppingCart.js");
 
+/*
 import cloneDeep from "./node_modules/lodash-es/cloneDeep.js";
 
 const state = {
@@ -107,3 +108,4 @@ state.user.loggedIn = false;
 console.log(stateClone);
 
 console.log(stateDeepClone);
+*/
