@@ -50,12 +50,25 @@ export const loadSearchResults = async function (query) {
   }
 };
 
-// loadSearchResults("pizza");
-
 export const getSearchResultsPage = function (page = state.search.page) {
   state.search.page = page;
   const start = (page - 1) * state.search.resultsPerPage; //page 1 returns 0
   const end = page * state.search.resultsPerPage; // page 1 returns 10
 
   return state.search.results.slice(start, end);
+};
+
+/**
+ * The `updateServings` function adjusts ingredient quantities based on a new serving size in a recipe.
+ * @param newServings - The `newServings` parameter represents the new number of servings that you want
+ * to update the recipe to. The `updateServings` function takes this parameter and adjusts the
+ * quantities of ingredients in the recipe accordingly based on the serving factor calculated.
+ */
+export const updateServings = function (newServings) {
+  const servingFactor = newServings / state.recipe.servings;
+  state.recipe.ingredients.forEach((ing) => {
+    ing.quantity = ing.quantity * servingFactor;
+  });
+
+  state.recipe.servings = newServings;
 };
