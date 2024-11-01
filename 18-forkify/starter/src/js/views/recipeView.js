@@ -8,6 +8,12 @@ class RecipeView extends View {
   _errorMessage = "We could not find that recipe. Please try again";
   _message = "";
 
+  addHandlerRender(handler) {
+    ["hashchange", "load"].forEach((ev) =>
+      window.addEventListener(ev, handler)
+    );
+  }
+
   _generateMarkup() {
     return `
         <figure class="recipe__fig">
