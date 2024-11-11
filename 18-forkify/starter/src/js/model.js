@@ -13,21 +13,26 @@ export const state = {
   bookmarks: [],
 };
 
+const createRecipeObject = function (data) {
+  const { recipe } = data.data;
+  return {
+    id: recipe.id,
+    title: recipe.title,
+    publisher: recipe.publisher,
+    sourceUrl: recipe.source_url,
+    image: recipe.image_url,
+    servings: recipe.servings,
+    cookingTime: recipe.cooking_time,
+    ingredients: recipe.ingredients,
+    ...(recipe.key && { key: recipe.key }),
+  };
+};
+
 export const loadRecipe = async function (id) {
   try {
-    const data = await getJSON(`${API_URL}${id}`);
+    const data = await getJSON(`${API_URL}/${id}`);
 
-    const { recipe } = data.data;
-    state.recipe = {
-      id: recipe.id,
-      title: recipe.title,
-      publisher: recipe.publisher,
-      sourceUrl: recipe.source_url,
-      image: recipe.image_url,
-      servings: recipe.servings,
-      cookingTime: recipe.cooking_time,
-      ingredients: recipe.ingredients,
-    };
+    state.recipe = createRecipeObject(data);
 
     if (state.bookmarks.some((bookmark) => bookmark.id === id)) {
       state.recipe.bookmarked = true;
@@ -64,12 +69,6 @@ export const getSearchResultsPage = function (page = state.search.page) {
   return state.search.results.slice(start, end);
 };
 
-/**
- * The `updateServings` function adjusts ingredient quantities based on a new serving size in a recipe.
- * @param newServings - The `newServings` parameter represents the new number of servings that you want
- * to update the recipe to. The `updateServings` function takes this parameter and adjusts the
- * quantities of ingredients in the recipe accordingly based on the serving factor calculated.
- */
 export const updateServings = function (newServings) {
   const servingFactor = newServings / state.recipe.servings;
   state.recipe.ingredients.forEach((ing) => {
@@ -143,6 +142,8 @@ export const uploadRecipe = async function (newRecipe) {
       ingredients,
     };
     const data = await sendJSON(`${API_URL}?key=${API_KEY}`, recipe);
+    state.recipe = createRecipeObject(data);
+    addBookmark(state.recipe);
     console.log(data);
   } catch (error) {
     throw error;

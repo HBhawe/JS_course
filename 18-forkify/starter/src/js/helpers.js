@@ -1,14 +1,3 @@
-/**
- * The function `getJSON` fetches data from a URL with a timeout feature to handle requests that take
- * too long.
- * @param s - The parameter `s` in the `timeout` function represents the number of seconds after which
- * the timeout should occur.
- * @returns The `getJSON` function is being exported, which is an asynchronous function that fetches
- * data from a specified URL. It uses `Promise.race` to race between the fetch request and a timeout
- * promise. If the fetch request resolves first, it parses the response as JSON and returns the data.
- * If the timeout promise resolves first, it throws an error indicating that the request took too long.
- */
-// timeout
 import { TIMEOUT_SEC } from "./config.js";
 
 const timeout = function (s) {
