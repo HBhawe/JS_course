@@ -2,13 +2,13 @@
   "name": "forkify",
   "version": "1.0.0",
   "description": "Recipe application",
-  "main": "index.js",
+  "main": "index.html",
   "targets": {
     "main": false
   },
   "scripts": {
     "start": "parcel --target default index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --dist-dir ./dist"
   },
   "author": "Harshal Bhawe",
   "license": "ISC",
