@@ -2,6 +2,16 @@ import icons from "url:../../img/icons.svg";
 
 export default class View {
   _data;
+
+  /**
+   * Render the received object to the DOM
+   * @param {Object | Object[]} data The data to be rendered
+   * @param {Boolean} [render = true] If false create markup string
+   * @returns {undefined | string} A markup string is returned if render is false
+   * @this {object} View object
+   * @author Harshal Bhawe
+   * @todo finish
+   */
   render(data, render = true) {
     if (!data || (Array.isArray(data) && data.length === 0))
       return this.renderError();
@@ -15,6 +25,12 @@ export default class View {
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
+  /**
+   * The `update` function in the JavaScript code updates the DOM elements based on the new data
+   * provided.
+   * @param data - The `update` method you provided is responsible for updating the DOM elements based on
+   * new data. The `data` parameter represents the new data that will be used to update the DOM elements.
+   */
   update(data) {
     this._data = data;
     const newMarkup = this._generateMarkup();
