@@ -12,9 +12,9 @@ import { MODAL_CLOSE_SEC } from "./config.js";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 const controlRecipes = async function () {
   try {
@@ -26,7 +26,6 @@ const controlRecipes = async function () {
 
     // render spinner
     recipeView.renderSpinner();
-
     // render bookmarks
     bookmarksView.update(model.state.bookmarks);
 
